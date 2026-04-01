@@ -51,111 +51,18 @@ const OBJECTIVES = [
     questions: [
       {
         id: 1,
-        type: "single-input",
-        text: "What is the latitude of the target in decimal degrees?",
-        answers: ["34.1250", "34.125"],
-        explanation: "Latitude is 34.1250° N.",
-      },
-      {
-        id: 2,
-        type: "single-input",
-        text: "What is the longitude of the target in decimal degrees?",
-        answers: ["-86.7500", "-86.75"],
-        explanation: "Longitude is -86.7500° W.",
-      },
-      {
-        id: 3,
-        type: "single-input",
-        text: "Provide the full coordinate pair as latitude, longitude.",
-        answers: ["34.125,-86.75", "34.1250,-86.7500", "34.125 -86.75"],
-        explanation: "Accepted format: 34.125, -86.75.",
-      },
-    ],
-  },
-  {
-    id: 3,
-    title: "MGRS",
-    description: "Read and plot Military Grid Reference System coordinates.",
-    image: "images/3A.png",
-    questions: [
-      {
-        id: 1,
-        type: "single-input",
-        text: "What is the Grid Zone Designator (GZD) for the target location?",
-        answers: ["38s"],
-        explanation: "Grid Zone Designator is 38S.",
-      },
-      {
-        id: 2,
-        type: "single-input",
-        text: "What are the two-letter 100,000m square identifier letters?",
-        answers: ["yc"],
-        explanation: "The 100,000m square identifier is YC.",
-      },
-      {
-        id: 3,
-        type: "single-input",
-        text: "Provide the full 10-digit MGRS coordinate for the target.",
-        answers: ["38syc1234567890", "38s yc 12345 67890", "38syc 1234567890"],
-        explanation: "Full MGRS: 38SYC1234567890.",
-      },
-    ],
-  },
-  {
-    id: 4,
-    title: "GARS",
-    description: "Identify Global Area Reference System grid cells.",
-    image: "images/4A.png",
-    questions: [
-      {
-        id: 1,
-        type: "single-input",
-        text: "What is the 3-digit longitude band number for the GARS cell containing the target?",
-        answers: ["280"],
-        explanation: "Longitude band is 280.",
-      },
-      {
-        id: 2,
-        type: "single-input",
-        text: "What is the 2-letter latitude band designator for the GARS cell?",
-        answers: ["kk"],
-        explanation: "Latitude band is KK.",
-      },
-      {
-        id: 3,
-        type: "single-input",
-        text: "Give the full GARS 15-minute cell designation.",
-        answers: ["280kk32", "280kk 32"],
-        explanation: "Full designation: 280KK32.",
-      },
-    ],
-  },
-  {
-    id: 5,
-    title: "CGRS",
-    description: "Apply Common Geographic Reference System conventions.",
-    image: "images/5A.png",
-    questions: [
-      {
-        id: 1,
-        type: "single-input",
-        text: "What is the 1-degree CGRS cell designation for the target?",
-        answers: ["42g"],
-        explanation: "The 1-degree cell is 42G.",
-      },
-      {
-        id: 2,
-        type: "single-input",
-        text: "Identify the 15-minute sub-cell within the CGRS 1-degree cell.",
-        answers: ["c3"],
-        explanation: "The sub-cell is C3.",
-      },
-      {
-        id: 3,
-        type: "single-input",
-        text: "Give the full CGRS designation combining the 1-degree cell and 15-minute sub-cell.",
-        answers: ["42gc3", "42g c3"],
-        explanation: "Full CGRS: 42GC3.",
+        type: "multi-blank",
+        text: "Latitude/Longitude Coordinates for target 1?",
+        items: [
+          { id: 1, label: "Target 1", latitude: "2945", longitude: "08115" },
+          { id: 2, label: "Target 2", latitude: "2930", longitude: "08430" },
+          { id: 3, label: "Target 3", latitude: "3015", longitude: "08530" },
+          { id: 4, label: "Target 4", latitude: "3145", longitude: "08315" },
+          { id: 5, label: "Target 5", latitude: "3115", longitude: "08545" },
+          { id: 6, label: "Target 6", latitude: "3245", longitude: "08445" },
+        ],
+        explanation:
+          "Enter the bearing as three spoken words and the range as spoken text.",
       },
     ],
   },
@@ -275,12 +182,6 @@ function loadObjective(objectiveId) {
   loadQuestion(0);
 }
 
-function createSingleInputMarkup(savedValue = "", disabled = false) {
-  return `
-    <textarea id="single-answer-input" class="answer-input" placeholder="Type your answer here..." ${disabled ? "disabled" : ""}>${escapeHtml(savedValue)}</textarea>
-  `;
-}
-
 function createMultiBlankMarkup(question, savedValues = [], disabled = false) {
   const instruction = question.instructions
     ? `<p class="question-help">${escapeHtml(question.instructions)}</p>`
@@ -288,33 +189,33 @@ function createMultiBlankMarkup(question, savedValues = [], disabled = false) {
 
   const rows = question.items
     .map((item, index) => {
-      const values = savedValues[index] || { bearing: "", range: "" };
+      const values = savedValues[index] || { latitude: "", longitude: "" };
       return `
       <div class="multi-blank-row">
         <div class="multi-blank-label">${escapeHtml(item.label || `Item ${item.id}`)}</div>
         <label class="field-stack">
-          <span>Bearing</span>
+          <span>Latitude</span>
           <input
             class="multi-blank-input"
             type="text"
             inputmode="numeric"
-            data-field="bearing"
+            data-field="latitude"
             data-index="${index}"
-            placeholder="e.g. 010"
-            value="${escapeHtml(values.bearing || "")}"
+            placeholder="e.g. 30"
+            value="${escapeHtml(values.latitude || "")}"
             ${disabled ? "disabled" : ""}
           />
         </label>
         <label class="field-stack">
-          <span>Range</span>
+          <span>Longitude</span>
           <input
             class="multi-blank-input"
             type="text"
             inputmode="numeric"
-            data-field="range"
+            data-field="logitude"
             data-index="${index}"
-            placeholder="e.g. 50"
-            value="${escapeHtml(values.range || "")}"
+            placeholder="e.g. 08145"
+            value="${escapeHtml(values.longitude || "")}"
             ${disabled ? "disabled" : ""}
           />
         </label>
@@ -435,11 +336,6 @@ function loadQuestion(index) {
       storedResult?.userEntries || [],
       isAnswered,
     );
-  } else {
-    els.questionForm.innerHTML = createSingleInputMarkup(
-      storedResult?.userInput || "",
-      isAnswered,
-    );
   }
 
   els.btnSubmit.disabled = isAnswered;
@@ -491,45 +387,32 @@ function checkAnswer(userValue, acceptedAnswers) {
   return acceptedAnswers.some((answer) => normalize(answer) === normalized);
 }
 
-function getSingleInputValue() {
-  const input = document.getElementById("single-answer-input");
-  return input ? input.value.trim() : "";
-}
-
 function getMultiBlankValues(question) {
   return question.items.map((_, index) => {
-    const bearingInput = els.questionForm.querySelector(
-      `[data-field="bearing"][data-index="${index}"]`,
+    const latitudeInput = els.questionForm.querySelector(
+      `[data-field="latitude"][data-index="${index}"]`,
     );
-    const rangeInput = els.questionForm.querySelector(
-      `[data-field="range"][data-index="${index}"]`,
+    const logitudeInput = els.questionForm.querySelector(
+      `[data-field="logitude"][data-index="${index}"]`,
     );
     return {
-      bearing: bearingInput ? bearingInput.value.trim() : "",
-      range: rangeInput ? rangeInput.value.trim() : "",
+      latitude: latitudeInput ? latitudeInput.value.trim() : "",
+      longitude: logitudeInput ? logitudeInput.value.trim() : "",
     };
   });
-}
-
-function buildSingleInputResult(question, userInput) {
-  const isCorrect = checkAnswer(userInput, question.answers);
-  return {
-    type: question.type,
-    isFullyCorrect: isCorrect,
-    correctCount: isCorrect ? 1 : 0,
-    totalCount: 1,
-    userInput,
-  };
 }
 
 function buildMultiBlankResult(question, userEntries) {
   let correctCount = 0;
 
   question.items.forEach((item, index) => {
-    const entry = userEntries[index] || { bearing: "", range: "" };
-    const bearingCorrect = checkAnswer(entry.bearing, item.bearingAnswers);
-    const rangeCorrect = checkAnswer(entry.range, item.rangeAnswers);
-    if (bearingCorrect && rangeCorrect) {
+    const entry = userEntries[index] || { latitude: "", longitude: "" };
+    const latitudeCorrect = checkAnswer(entry.latitude, item.latitudeAnswers);
+    const longitudeCorrect = checkAnswer(
+      entry.longitude,
+      item.longitudeAnswers,
+    );
+    if (latitudeCorrect && longitudeCorrect) {
       correctCount += 1;
     }
   });
@@ -569,10 +452,6 @@ function submitAnswer() {
     if (!userEntries.some((e) => e.bearingParts.some(Boolean) || e.rangeText))
       return;
     result = buildMultiBlankSpokenResult(question, userEntries);
-  } else {
-    const userInput = getSingleInputValue();
-    if (!userInput) return;
-    result = buildSingleInputResult(question, userInput);
   }
 
   storeQuestionResult(objective.id, appState.currentQuestionIndex, result);

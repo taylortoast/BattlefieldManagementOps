@@ -106,7 +106,7 @@ textarea {
 
 .obj-layout {
   display: grid;
-  grid-template-columns: 210px 1fr 340px;
+  grid-template-columns: 210px 3fr 640px;
   height: calc(100vh - 56px);
   overflow: hidden;
 }
@@ -301,10 +301,6 @@ textarea {
   width: 7rem;
   min-width: 7rem;
   text-align: center;
-}
-
-.spoken-row .multi-blank-input[data-field="range-text"] {
-  min-width: 18rem;
 }
 
 .field-stack {
