@@ -1,3 +1,5 @@
+//TODO: Fix result submission button. Submission function is not working.
+//TODO: Need to defer all question evaluations to the final results page. The final results page should only be displayed after submission of all questions.
 const OBJECTIVES = [
   {
     id: 1,
@@ -45,14 +47,14 @@ const OBJECTIVES = [
   },
   {
     id: 2,
-    title: "Lat / Long",
+    title: "Lat / Long Static",
     description: "Identify and convert latitude and longitude coordinates.",
     image: "images/2A.png",
     questions: [
       {
         id: 1,
         type: "multi-blank",
-        text: "Latitude/Longitude Coordinates for target 1?",
+        text: "Latitude/Longitude Coordinates for each target?",
         items: [
           { id: 1, label: "Target 1", latitude: "2945", longitude: "08115" },
           { id: 2, label: "Target 2", latitude: "2930", longitude: "08430" },
@@ -62,7 +64,25 @@ const OBJECTIVES = [
           { id: 6, label: "Target 6", latitude: "3245", longitude: "08445" },
         ],
         explanation:
-          "Enter the bearing as three spoken words and the range as spoken text.",
+          "Enter the latitude and longitude in proper numberic form.",
+      },
+    ],
+  },
+  {
+    id: 3,
+    title: "Lat / Long Dynamic",
+    description: "Identify and convert latitude and longitude coordinates.",
+    image: "images/2B.png",
+    questions: [
+      {
+        id: 1,
+        type: "dragable",
+        text: "Latitude/Longitude Coordinates for each target?",
+        items: [
+          //TODO: Need to create question items here simular to question id:2 items, but with a change. Users will be required to place dragable objects onto the image. Each dragable object placement should return a relative latitude and longitude position of the dragable object. There will be six objects, displayed in a side panel, from which the user can select, drag to target position, and place. Again this will commit the latitude and longitude coordinates to the question's answer. This question will therefore have a six part answer. The answers will be in the same shape as question id:2's answers. Static answers will be coded in to determine correctness. I would suggest creating a grid of cells for possition tracking that can be overlayed on to the provided image. Dragging the object to the specified cell and dropping/placing the object on that cell will determine a user's answer as correct. The dragable object will consist of a provided image of a dot. All dragable objects will use the same image. This question can be of the type dragable. Each target point's required latitude and longitude will be provided within the qa panel. The placement of all six dragable objects will be required before the student can submit their answer. The user will not be provided the evaluation of the question until the final results page, which is seen after all questions are completed.
+        ],
+        explanation:
+          "Place each dragable object on the image in its latitude and longitude position according to the information given.",
       },
     ],
   },
