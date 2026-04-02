@@ -47,6 +47,33 @@ const OBJECTIVES = [
   },
   {
     id: 2,
+    title: "Bearing and Range",
+    description:
+      "Drag each marker to its correct position according to the provided bearing and range posistions.",
+    //Official Answers:
+    // 1. two two zero, range thirty
+    // 2. one zero zero, range fifty
+    // 3. zero five zero, range one hundred thirty
+    // 4. one two zero, range one hundred twenty
+    // 5. three one zero, range sixty
+    // 6. one one zero, range eighty
+
+    image: "images/1A2.png",
+    questions: [
+      {
+        id: 1,
+        type: "multi-blank-spoken",
+        text: "Using the map, determine the magnetic bearing and range for each numbered position.",
+        items: [
+          //TODO: Need to create question items here simular to question id:2 items, but with a change. Users will be required to place dragable objects onto the image. Each dragable object placement should return a relative latitude and longitude position of the dragable object. There will be six objects, displayed in a side panel, from which the user can select, drag to target position, and place. Again this will commit the latitude and longitude coordinates to the question's answer. This question will therefore have a six part answer. The answers will be in the same shape as question id:2's answers. Static answers will be coded in to determine correctness. I would suggest creating a grid of cells for possition tracking that can be overlayed on to the provided image. Dragging the object to the specified cell and dropping/placing the object on that cell will determine a user's answer as correct. The dragable object will consist of a provided image of a dot. All dragable objects will use the same image. This question can be of the type dragable. Each target point's required latitude and longitude will be provided within the qa panel. The placement of all six dragable objects will be required before the student can submit their answer. The user will not be provided the evaluation of the question until the final results page, which is seen after all questions are completed.
+        ],
+        explanation:
+          "Enter the bearing as three spoken words and the range as spoken text.",
+      },
+    ],
+  },
+  {
+    id: 3,
     title: "Lat / Long Static",
     description: "Identify and convert latitude and longitude coordinates.",
     image: "images/2A.png",
@@ -55,6 +82,13 @@ const OBJECTIVES = [
         id: 1,
         type: "multi-blank",
         text: "Latitude/Longitude Coordinates for each target?",
+        //Official Answers:
+        //1. 2945S 08115E
+        //2. 2930S 08430E
+        //3. 3015S 08530E
+        //4. 3145S 08315E
+        //5. 3115S 08545E
+        //6. 3245S 08445E
         items: [
           { id: 1, label: "Target 1", latitude: "2945", longitude: "08115" },
           { id: 2, label: "Target 2", latitude: "2930", longitude: "08430" },
@@ -64,25 +98,206 @@ const OBJECTIVES = [
           { id: 6, label: "Target 6", latitude: "3245", longitude: "08445" },
         ],
         explanation:
-          "Enter the latitude and longitude in proper numberic form.",
+          "Determine Latitude/Longitude Coordinates for the marked positions.",
       },
     ],
   },
   {
-    id: 3,
+    id: 4,
     title: "Lat / Long Dynamic",
-    description: "Identify and convert latitude and longitude coordinates.",
-    image: "images/2B.png",
+    description:
+      "Drag each marker to its correct latitude and longitude coordinates.",
+    image: "images/2A2.png",
     questions: [
       {
         id: 1,
         type: "dragable",
         text: "Latitude/Longitude Coordinates for each target?",
+        //Official Answers:
+        //1. 16S FL 2884 4964
+        //2. 16S FL 3156 4913
+        //3. 16S FL 3315 4906
+        //4. 16S FL 3000 4860
+        //5. 16S FL 2828 4744
+        //6. 16S FL 3368 4791
         items: [
           //TODO: Need to create question items here simular to question id:2 items, but with a change. Users will be required to place dragable objects onto the image. Each dragable object placement should return a relative latitude and longitude position of the dragable object. There will be six objects, displayed in a side panel, from which the user can select, drag to target position, and place. Again this will commit the latitude and longitude coordinates to the question's answer. This question will therefore have a six part answer. The answers will be in the same shape as question id:2's answers. Static answers will be coded in to determine correctness. I would suggest creating a grid of cells for possition tracking that can be overlayed on to the provided image. Dragging the object to the specified cell and dropping/placing the object on that cell will determine a user's answer as correct. The dragable object will consist of a provided image of a dot. All dragable objects will use the same image. This question can be of the type dragable. Each target point's required latitude and longitude will be provided within the qa panel. The placement of all six dragable objects will be required before the student can submit their answer. The user will not be provided the evaluation of the question until the final results page, which is seen after all questions are completed.
         ],
         explanation:
-          "Place each dragable object on the image in its latitude and longitude position according to the information given.",
+          "Plot the following Lat/Long Position. Ensure you label you plots with the corresponding number.",
+      },
+    ],
+  },
+  {
+    id: 5,
+    title: "MGRS Coordinates Static",
+    description: "Identify and convert 10-meter MGRS Coordinates.",
+    image: "images/3A.png",
+    questions: [
+      {
+        id: 1,
+        type: "multi-blank",
+        text: "Determine MGRS Coordinates for each marked postition",
+        //Official Answers:
+        //1. 16S FL 2884 4964
+        //2. 16S FL 3156 4913
+        //3. 16S FL 3315 4906
+        //4. 16S FL 3000 4860
+        //5. 16S FL 2828 4744
+        //6. 16S FL 3368 4791
+
+        items: [
+          { id: 1, label: "Postition 1", latitude: "2945", longitude: "08115" },
+          { id: 2, label: "Postition 2", latitude: "2930", longitude: "08430" },
+          { id: 3, label: "Postition 3", latitude: "3015", longitude: "08530" },
+          { id: 4, label: "Postition 4", latitude: "3145", longitude: "08315" },
+          { id: 5, label: "Postition 5", latitude: "3115", longitude: "08545" },
+          { id: 6, label: "Postition 6", latitude: "3245", longitude: "08445" },
+        ],
+        explanation:
+          "Determine GARS Coordinates for the corresponding numbers.",
+      },
+    ],
+  },
+  {
+    id: 6,
+    title: "MGRS Coordinates Dynamic",
+    description: "Drag each marker to its correct 10-meter MGRS Coordinates.",
+    //Research guidance on MGRS Coordinates. Check MGRS_Coordinate_Guide.md
+    image: "images/3A2.png",
+    questions: [
+      {
+        id: 1,
+        type: "dragable",
+        text: "Determine MGRS Coordinates for each marked postition",
+        //Official Answers:
+        //1. 16SFL29734966
+        //2. 16SFL32074967
+        //3. 16SFL28174820
+        //4. 16SFL31364870
+        //5. 16SFL30764757
+        //6. 16SFL31624730
+        items: [
+          //TODO: Need to create question items here simular to question id:4 items, but with a change. Users will be required to place dragable objects onto the image. Each dragable object placement should return a relative latitude and longitude position of the dragable object. There will be six objects, displayed in a side panel, from which the user can select, drag to target position, and place. Again this will commit the latitude and longitude coordinates to the question's answer. This question will therefore have a six part answer. The answers will be in the same shape as question id:2's answers. Static answers will be coded in to determine correctness. I would suggest creating a grid of cells for possition tracking that can be overlayed on to the provided image. Dragging the object to the specified cell and dropping/placing the object on that cell will determine a user's answer as correct. The dragable object will consist of a provided image of a dot. All dragable objects will use the same image. This question can be of the type dragable. Each target point's required latitude and longitude will be provided within the qa panel. The placement of all six dragable objects will be required before the student can submit their answer. The user will not be provided the evaluation of the question until the final results page, which is seen after all questions are completed.
+        ],
+        explanation:
+          "Plot the following MGRS coordinates. Ensure you label you plots with the corresponding number.",
+      },
+    ],
+  },
+  {
+    id: 7,
+    title: "Global Area Reference System Static",
+    description:
+      "Identify and convert GARS Coordinates for the corresponding numbers.",
+    image: "images/4A.png",
+    questions: [
+      {
+        id: 1,
+        type: "multi-blank",
+        text: "Determine GARS Coordinates for the corresponding numbers.",
+        //Official Answers:
+        // 1. 184KZ35
+        // 2. 184LC46
+        // 3. 183KZ29
+        // 4. 184LB11
+        // 5. 185KZ42
+        // 6. 183LA23
+        items: [
+          { id: 1, label: "Postition 1", latitude: "2945", longitude: "08115" },
+          { id: 2, label: "Postition 2", latitude: "2930", longitude: "08430" },
+          { id: 3, label: "Postition 3", latitude: "3015", longitude: "08530" },
+          { id: 4, label: "Postition 4", latitude: "3145", longitude: "08315" },
+          { id: 5, label: "Postition 5", latitude: "3115", longitude: "08545" },
+          { id: 6, label: "Postition 6", latitude: "3245", longitude: "08445" },
+        ],
+        explanation:
+          "Determine GARS Coordinates for the corresponding numbers.",
+      },
+    ],
+  },
+  {
+    id: 8,
+    title: "Global Area Reference System Dynamic",
+    description:
+      "Drag each marker to its correct GARS Coordinates for the corresponding numbers.",
+    //Research guidance on GARS Coordinates. Check GARS_Coordinate_Guide.md
+    image: "images/4A2.png",
+    questions: [
+      {
+        id: 1,
+        type: "dragable",
+        text: "Determine GARS Coordinates for the corresponding numbers.",
+        //Official Answers:
+        // 1. 185LC13
+        // 2. 183LB27
+        // 3. 185LA14
+        // 4. 183KZ22
+        // 5. 185KZ38
+        // 6. 184LC48
+        items: [
+          //TODO: Need to create question items here simular to question id:4 items, but with a change. Users will be required to place dragable objects onto the image. Each dragable object placement should return a relative latitude and longitude position of the dragable object. There will be six objects, displayed in a side panel, from which the user can select, drag to target position, and place. Again this will commit the latitude and longitude coordinates to the question's answer. This question will therefore have a six part answer. The answers will be in the same shape as question id:2's answers. Static answers will be coded in to determine correctness. I would suggest creating a grid of cells for possition tracking that can be overlayed on to the provided image. Dragging the object to the specified cell and dropping/placing the object on that cell will determine a user's answer as correct. The dragable object will consist of a provided image of a dot. All dragable objects will use the same image. This question can be of the type dragable. Each target point's required latitude and longitude will be provided within the qa panel. The placement of all six dragable objects will be required before the student can submit their answer. The user will not be provided the evaluation of the question until the final results page, which is seen after all questions are completed.
+        ],
+        explanation:
+          "Plot the following GARS Position. Ensure you label you plots with the corresponding number.",
+      },
+    ],
+  },
+  {
+    id: 9,
+    title: "Common Grid Reference System Static",
+    description:
+      "Identify and convert CGRS Coordinates for the corresponding numbers.",
+    image: "images/5A.png",
+    questions: [
+      {
+        id: 1,
+        type: "multi-blank",
+        text: "Determine CGRS Coordinates for the corresponding numbers.",
+        //Official Answers:
+        // 1. 1B2NW
+        // 2. 2B5NE
+        // 3. 1A2SW
+        // 4. 2C3NE
+        // 5. 3C5NE
+        // 6. 2B7SW
+        items: [
+          { id: 1, label: "Postition 1", latitude: "2945", longitude: "08115" },
+          { id: 2, label: "Postition 2", latitude: "2930", longitude: "08430" },
+          { id: 3, label: "Postition 3", latitude: "3015", longitude: "08530" },
+          { id: 4, label: "Postition 4", latitude: "3145", longitude: "08315" },
+          { id: 5, label: "Postition 5", latitude: "3115", longitude: "08545" },
+          { id: 6, label: "Postition 6", latitude: "3245", longitude: "08445" },
+        ],
+        explanation:
+          "Plot the following CGRS Position. Ensure you label you plots with the corresponding number.",
+      },
+    ],
+  },
+  {
+    id: 10,
+    title: "Common Grid Reference System Dynamic",
+    description:
+      "Drag each marker to its correct CGRS Coordinates for the corresponding numbers.",
+    //Research guidance on CGRS Coordinates. Check CGRS_Coordinate_Guide.md
+    image: "images/5A2.png",
+    questions: [
+      {
+        id: 1,
+        type: "dragable",
+        text: "Determine CGRS Coordinates for the corresponding numbers.",
+        //Official Answers:
+        // 1. 1C2SE
+        // 2. 3C6NE
+        // 3. 1A6SW
+        // 4. 3B7NE
+        // 5. 2C4NW
+        // 6. 3B9SW
+        items: [
+          //TODO: Need to create question items here simular to question id:4 items, but with a change. Users will be required to place dragable objects onto the image. Each dragable object placement should return a relative latitude and longitude position of the dragable object. There will be six objects, displayed in a side panel, from which the user can select, drag to target position, and place. Again this will commit the latitude and longitude coordinates to the question's answer. This question will therefore have a six part answer. The answers will be in the same shape as question id:2's answers. Static answers will be coded in to determine correctness. I would suggest creating a grid of cells for possition tracking that can be overlayed on to the provided image. Dragging the object to the specified cell and dropping/placing the object on that cell will determine a user's answer as correct. The dragable object will consist of a provided image of a dot. All dragable objects will use the same image. This question can be of the type dragable. Each target point's required latitude and longitude will be provided within the qa panel. The placement of all six dragable objects will be required before the student can submit their answer. The user will not be provided the evaluation of the question until the final results page, which is seen after all questions are completed.
+        ],
+        explanation:
+          "Plot the following CGRS Position. Ensure you label you plots with the corresponding number.",
       },
     ],
   },
