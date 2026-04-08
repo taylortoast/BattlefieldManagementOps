@@ -79,7 +79,8 @@ textarea {
   gap: 0.85rem;
   transition:
     transform 0.15s,
-    box-shadow 0.15s;
+    box-shadow 0.15s,
+    border-color 0.15s;
 }
 
 .obj-card:hover {
@@ -87,10 +88,37 @@ textarea {
   box-shadow: 0 8px 24px rgba(74, 144, 217, 0.2);
 }
 
+.obj-card--completed {
+  border-color: #2a6a2a;
+  background: #1a2a1a;
+}
+
+.obj-card--completed:hover {
+  box-shadow: 0 8px 24px rgba(85, 204, 85, 0.15);
+}
+
+.card-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
 .card-number {
   font-size: 2rem;
   font-weight: 700;
   color: #4a90d9;
+}
+
+.card-complete-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #55cc55;
+  background: rgba(85, 204, 85, 0.12);
+  border: 1px solid rgba(85, 204, 85, 0.35);
+  border-radius: 4px;
+  padding: 0.2rem 0.5rem;
+  white-space: nowrap;
 }
 
 .card-title {
@@ -102,6 +130,22 @@ textarea {
   font-size: 0.9rem;
   color: #b3b3c9;
   flex: 1;
+}
+
+.btn-start--done {
+  background: #2a5a2a;
+  color: #88dd88;
+}
+
+.btn-start--done:hover {
+  background: #336633;
+}
+
+.landing-progress-msg {
+  font-size: 0.9rem;
+  color: #8ca9d8;
+  text-align: center;
+  padding: 0.4rem 0;
 }
 
 .obj-layout {
@@ -411,6 +455,33 @@ textarea {
   color: #8ca9d8;
 }
 
+/* Coordinate-click layer — transparent overlay sized to image, dots positioned by fx/fy % */
+.coord-dots-layer {
+  position: absolute;
+  pointer-events: none;
+}
+
+.coord-dots-layer .placed-dot-container {
+  pointer-events: all;
+}
+
+.image-section.coord-mode {
+  cursor: crosshair;
+}
+
+/* Calibration tooltip showing native pixel x/y on hover */
+.img-coord-tip {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.75);
+  color: #e0e0ff;
+  font-size: 0.7rem;
+  padding: 2px 7px;
+  border-radius: 3px;
+  pointer-events: none;
+  z-index: 50;
+  white-space: nowrap;
+}
+
 /* Drop grid overlay — position/size set by positionDropGrid() in JS */
 .drop-grid {
   position: absolute;
@@ -435,9 +506,6 @@ textarea {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   pointer-events: all;
   cursor: pointer;
   z-index: 10;
@@ -447,23 +515,27 @@ textarea {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: #e74c3c;
+  background: #0bd437;
   border: 2px solid #fff;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.6);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 }
 
 .placed-marker {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
 }
 
 .placed-dot-label {
-  font-size: 0.65rem;
-  font-weight: 700;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.8rem;
+  font-weight: 800;
   color: #fff;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 1);
   line-height: 1;
-  margin-top: 1px;
+  pointer-events: none;
 }
 
 /* Dragable panel in QA area */
@@ -528,7 +600,9 @@ textarea {
   border: 2px solid #3a3a50;
   border-radius: 8px;
   cursor: pointer;
-  transition: border-color 0.15s, background 0.15s;
+  transition:
+    border-color 0.15s,
+    background 0.15s;
   font-size: 0.8rem;
   color: #ccc;
   min-width: 52px;

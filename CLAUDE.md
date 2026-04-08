@@ -91,6 +91,34 @@ Correct/incorrect scores are only revealed on the **Results** page, which appear
 
 ---
 
+## Current Project Status (as of 2026-04-08)
+
+### Completed
+- 10 objectives implemented: 5 static (text input) + 5 dynamic (drag-and-drop)
+- Static objectives (1, 3, 5, 7, 9): multi-blank text input with answer normalization
+- Dynamic objectives (2, 4, 6, 8, 10): drag-and-drop marker placement
+  - Obj 2 (Bearing Dynamic): uses `answerMode: "coordinate"` — click-to-place with pixel-distance tolerance
+  - Objs 4, 6, 8, 10: use `answerMode: "grid"` — cell-match with 40×40 (or 40×27 for MGRS) grid
+- Grid overlay sized precisely to rendered image via `getBoundingClientRect()` + native pixel scale factors
+- Placed dot labels displayed on top of each marker
+- Deferred evaluation: results only shown after all 10 objectives submitted
+- Home screen shows per-objective completion badges and a "View Results" button when all 10 done
+- DevTools helpers: `window.appState`, `window.debugScores()`
+- Console logging: color-coded correct/incorrect per question at submit time
+
+### Pending Calibration
+All dragable objectives have placeholder `targetRow: 0, targetCol: 0` (grid mode) or `targetX: 0, targetY: 0` (coordinate mode). Each needs calibration:
+- **Obj 2** (Bearing Dynamic): coordinate mode — use browser DevTools to find native pixel coords for each position on `1A2.png`
+- **Obj 4** (Lat/Long Dynamic): grid mode — hover tooltip shows `r:X c:X` on each cell
+- **Obj 6** (MGRS Dynamic): grid mode — 40×27 grid on `3A2.png`
+- **Obj 8** (GARS Dynamic): grid mode — `4A2.png` present, grid 40×40
+- **Obj 10** (CGRS Dynamic): grid mode — `5A2.png`, grid 40×40
+
+### Known Issues / Notes
+- Obj 2 grid offset was set to `gridOffsetX: 180, gridOffsetY: 89` but then replaced by coordinate mode — coordinate targets still need calibration
+
+---
+
 ## Developer Preferences
 - Ask before committing to git
 - Prefer editing existing files over creating new ones

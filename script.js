@@ -2,7 +2,8 @@ const OBJECTIVES = [
   {
     id: 1,
     title: "Bearing and Range Static",
-    description: "Calculate bearing and range to marked target points using the scenario map.",
+    description:
+      "Calculate bearing and range to marked target points using the scenario map.",
     image: "images/1A.png",
     questions: [
       {
@@ -11,38 +12,104 @@ const OBJECTIVES = [
         text: "Using the map, determine the magnetic bearing and range for each numbered position.",
         items: [
           { id: 1, bearingParts: ["zero", "one", "zero"], rangeText: "fifty" },
-          { id: 2, bearingParts: ["zero", "four", "zero"], rangeText: "ninety" },
-          { id: 3, bearingParts: ["one", "zero", "zero"], rangeText: "one hundred forty" },
-          { id: 4, bearingParts: ["one", "eight", "zero"], rangeText: "seventy" },
-          { id: 5, bearingParts: ["two", "five", "zero"], rangeText: "one hundred twenty" },
-          { id: 6, bearingParts: ["three", "two", "zero"], rangeText: "one hundred ten" },
+          {
+            id: 2,
+            bearingParts: ["zero", "four", "zero"],
+            rangeText: "ninety",
+          },
+          {
+            id: 3,
+            bearingParts: ["one", "zero", "zero"],
+            rangeText: "one hundred forty",
+          },
+          {
+            id: 4,
+            bearingParts: ["one", "eight", "zero"],
+            rangeText: "seventy",
+          },
+          {
+            id: 5,
+            bearingParts: ["two", "five", "zero"],
+            rangeText: "one hundred twenty",
+          },
+          {
+            id: 6,
+            bearingParts: ["three", "two", "zero"],
+            rangeText: "one hundred ten",
+          },
         ],
-        explanation: "Enter the bearing as three spoken words and the range as spoken text.",
+        explanation:
+          "Enter the bearing as three spoken words and the range as spoken text.",
       },
     ],
   },
   {
     id: 2,
     title: "Bearing and Range Dynamic",
-    description: "Place each numbered marker at the correct bearing and range position on the map.",
+    description:
+      "Place each numbered marker at the correct bearing and range position on the map.",
     image: "images/1A2.png",
     questions: [
       {
         id: 1,
         type: "dragable",
+        answerMode: "coordinate",
         text: "Place each numbered marker at the correct bearing and range position on the map.",
-        gridRows: 40,
-        gridCols: 40,
-        // CALIBRATION NEEDED: Set targetRow/targetCol to match the correct grid cells on image 1A2.png
+        // CALIBRATION: Open 1A2.png in an image editor, hover over each target point,
+        // note the pixel x/y, and set targetX/targetY. Set tolerance to the acceptable
+        // radius in native image pixels (e.g. 25 ≈ one range-ring half-width).
         items: [
-          { id: 1, label: "Position 1", displayText: "two two zero, range thirty", targetRow: 0, targetCol: 0 },
-          { id: 2, label: "Position 2", displayText: "one zero zero, range fifty", targetRow: 0, targetCol: 0 },
-          { id: 3, label: "Position 3", displayText: "zero five zero, range one hundred thirty", targetRow: 0, targetCol: 0 },
-          { id: 4, label: "Position 4", displayText: "one two zero, range one hundred twenty", targetRow: 0, targetCol: 0 },
-          { id: 5, label: "Position 5", displayText: "three one zero, range sixty", targetRow: 0, targetCol: 0 },
-          { id: 6, label: "Position 6", displayText: "one one zero, range eighty", targetRow: 0, targetCol: 0 },
+          {
+            id: 1,
+            label: "Position 1",
+            displayText: "two two zero, range thirty",
+            targetX: 346,
+            targetY: 463,
+            tolerance: 25,
+          },
+          {
+            id: 2,
+            label: "Position 2",
+            displayText: "one zero zero, range fifty",
+            targetX: 532,
+            targetY: 422,
+            tolerance: 25,
+          },
+          {
+            id: 3,
+            label: "Position 3",
+            displayText: "zero five zero, range one hundred thirty",
+            targetX: 668,
+            targetY: 179,
+            tolerance: 25,
+          },
+          {
+            id: 4,
+            label: "Position 4",
+            displayText: "one two zero, range one hundred twenty",
+            targetX: 677,
+            targetY: 559,
+            tolerance: 25,
+          },
+          {
+            id: 5,
+            label: "Position 5",
+            displayText: "three one zero, range sixty",
+            targetX: 279,
+            targetY: 301,
+            tolerance: 25,
+          },
+          {
+            id: 6,
+            label: "Position 6",
+            displayText: "one one zero, range eighty",
+            targetX: 600,
+            targetY: 473,
+            tolerance: 25,
+          },
         ],
-        explanation: "Place each numbered dot at the correct bearing and range position.",
+        explanation:
+          "Place each numbered dot at the correct bearing and range position.",
       },
     ],
   },
@@ -65,32 +132,75 @@ const OBJECTIVES = [
           { id: 5, label: "Target 5", latitude: "3115S", longitude: "08545E" },
           { id: 6, label: "Target 6", latitude: "3245S", longitude: "08445E" },
         ],
-        explanation: "Determine Latitude/Longitude Coordinates for the marked positions.",
+        explanation:
+          "Determine Latitude/Longitude Coordinates for the marked positions.",
       },
     ],
   },
   {
     id: 4,
     title: "Lat / Long Dynamic",
-    description: "Drag each marker to its correct latitude and longitude position on the map.",
+    description:
+      "Drag each marker to its correct latitude and longitude position on the map.",
     image: "images/2A2.png",
     questions: [
       {
         id: 1,
         type: "dragable",
         text: "Plot the following Lat/Long positions on the map.",
-        gridRows: 40,
-        gridCols: 40,
+        gridRows: 17,
+        gridCols: 21,
+        gridOffsetX: 138, // pixels from the LEFT edge of the image to where the  grid starts
+        gridOffsetY: 95, // pixels from the TOP  edge of the image to where the grid starts
+        gridWidth: 695, // width  of the grid area in pixels (null = full image width  - offsetX)
+        gridHeight: 657, // height of the grid area in pixels (null = full image height - offsetY)
         // CALIBRATION NEEDED: Set targetRow/targetCol to match the correct grid cells on image 2A2.png
         items: [
-          { id: 1, label: "Position 1", displayText: "2930S 08330E", targetRow: 0, targetCol: 0 },
-          { id: 2, label: "Position 2", displayText: "3015S 08315E", targetRow: 0, targetCol: 0 },
-          { id: 3, label: "Position 3", displayText: "3115S 08415E", targetRow: 0, targetCol: 0 },
-          { id: 4, label: "Position 4", displayText: "3230S 08230E", targetRow: 0, targetCol: 0 },
-          { id: 5, label: "Position 5", displayText: "2915S 08545E", targetRow: 0, targetCol: 0 },
-          { id: 6, label: "Position 6", displayText: "3045S 08445E", targetRow: 0, targetCol: 0 },
+          {
+            id: 1,
+            label: "Position 1",
+            displayText: "2930S 08330E",
+            targetRow: 0,
+            targetCol: 0,
+          },
+          {
+            id: 2,
+            label: "Position 2",
+            displayText: "3015S 08315E",
+            targetRow: 0,
+            targetCol: 0,
+          },
+          {
+            id: 3,
+            label: "Position 3",
+            displayText: "3115S 08415E",
+            targetRow: 0,
+            targetCol: 0,
+          },
+          {
+            id: 4,
+            label: "Position 4",
+            displayText: "3230S 08230E",
+            targetRow: 0,
+            targetCol: 0,
+          },
+          {
+            id: 5,
+            label: "Position 5",
+            displayText: "2915S 08545E",
+            targetRow: 0,
+            targetCol: 0,
+          },
+          {
+            id: 6,
+            label: "Position 6",
+            displayText: "3045S 08445E",
+            targetRow: 0,
+            targetCol: 0,
+          },
         ],
-        explanation: "Plot the following Lat/Long positions. Ensure you label your plots with the corresponding number.",
+        explanation:
+          "Plot the following Lat/Long positions. Ensure you label your plots with the corresponding number.",
       },
     ],
   },
@@ -107,12 +217,42 @@ const OBJECTIVES = [
         fieldLabels: ["Grid Zone + Square", "Easting / Northing"],
         fieldPlaceholders: ["e.g. 16SFL", "e.g. 28844964"],
         items: [
-          { id: 1, label: "Position 1", latitude: "16SFL", longitude: "28844964" },
-          { id: 2, label: "Position 2", latitude: "16SFL", longitude: "31564913" },
-          { id: 3, label: "Position 3", latitude: "16SFL", longitude: "33154906" },
-          { id: 4, label: "Position 4", latitude: "16SFL", longitude: "30004860" },
-          { id: 5, label: "Position 5", latitude: "16SFL", longitude: "28284744" },
-          { id: 6, label: "Position 6", latitude: "16SFL", longitude: "33684791" },
+          {
+            id: 1,
+            label: "Position 1",
+            latitude: "16SFL",
+            longitude: "28844964",
+          },
+          {
+            id: 2,
+            label: "Position 2",
+            latitude: "16SFL",
+            longitude: "31564913",
+          },
+          {
+            id: 3,
+            label: "Position 3",
+            latitude: "16SFL",
+            longitude: "33154906",
+          },
+          {
+            id: 4,
+            label: "Position 4",
+            latitude: "16SFL",
+            longitude: "30004860",
+          },
+          {
+            id: 5,
+            label: "Position 5",
+            latitude: "16SFL",
+            longitude: "28284744",
+          },
+          {
+            id: 6,
+            label: "Position 6",
+            latitude: "16SFL",
+            longitude: "33684791",
+          },
         ],
         explanation: "Determine MGRS Coordinates for the marked positions.",
       },
@@ -121,7 +261,8 @@ const OBJECTIVES = [
   {
     id: 6,
     title: "MGRS Coordinates Dynamic",
-    description: "Drag each marker to its correct 10-meter MGRS position on the map.",
+    description:
+      "Drag each marker to its correct 10-meter MGRS position on the map.",
     image: "images/3A2.png",
     questions: [
       {
@@ -130,23 +271,65 @@ const OBJECTIVES = [
         text: "Plot the following MGRS coordinates on the map.",
         gridRows: 27,
         gridCols: 40,
+        gridOffsetX: 0, // pixels from the LEFT edge of the image to where the  grid starts
+        gridOffsetY: 0, // pixels from the TOP  edge of the image to where the grid starts
+        gridWidth: null, // width  of the grid area in pixels (null = full image width  - offsetX)
+        gridHeight: null, // height of the grid area in pixels (null = full image height - offsetY)
         // CALIBRATION NEEDED: Set targetRow/targetCol to match the correct grid cells on image 3A2.png
         items: [
-          { id: 1, label: "Position 1", displayText: "16SFL29734966", targetRow: 0, targetCol: 0 },
-          { id: 2, label: "Position 2", displayText: "16SFL32074967", targetRow: 0, targetCol: 0 },
-          { id: 3, label: "Position 3", displayText: "16SFL28174820", targetRow: 0, targetCol: 0 },
-          { id: 4, label: "Position 4", displayText: "16SFL31364870", targetRow: 0, targetCol: 0 },
-          { id: 5, label: "Position 5", displayText: "16SFL30764757", targetRow: 0, targetCol: 0 },
-          { id: 6, label: "Position 6", displayText: "16SFL31624730", targetRow: 0, targetCol: 0 },
+          {
+            id: 1,
+            label: "Position 1",
+            displayText: "16SFL29734966",
+            targetRow: 0,
+            targetCol: 0,
+          },
+          {
+            id: 2,
+            label: "Position 2",
+            displayText: "16SFL32074967",
+            targetRow: 0,
+            targetCol: 0,
+          },
+          {
+            id: 3,
+            label: "Position 3",
+            displayText: "16SFL28174820",
+            targetRow: 0,
+            targetCol: 0,
+          },
+          {
+            id: 4,
+            label: "Position 4",
+            displayText: "16SFL31364870",
+            targetRow: 0,
+            targetCol: 0,
+          },
+          {
+            id: 5,
+            label: "Position 5",
+            displayText: "16SFL30764757",
+            targetRow: 0,
+            targetCol: 0,
+          },
+          {
+            id: 6,
+            label: "Position 6",
+            displayText: "16SFL31624730",
+            targetRow: 0,
+            targetCol: 0,
+          },
         ],
-        explanation: "Plot the following MGRS coordinates. Ensure you label your plots with the corresponding number.",
+        explanation:
+          "Plot the following MGRS coordinates. Ensure you label your plots with the corresponding number.",
       },
     ],
   },
   {
     id: 7,
     title: "Global Area Reference System Static",
-    description: "Identify and convert GARS Coordinates for the corresponding numbers.",
+    description:
+      "Identify and convert GARS Coordinates for the corresponding numbers.",
     image: "images/4A.png",
     questions: [
       {
@@ -163,7 +346,8 @@ const OBJECTIVES = [
           { id: 5, label: "Position 5", latitude: "185KZ", longitude: "42" },
           { id: 6, label: "Position 6", latitude: "183LA", longitude: "23" },
         ],
-        explanation: "Determine GARS Coordinates for the corresponding numbers.",
+        explanation:
+          "Determine GARS Coordinates for the corresponding numbers.",
       },
     ],
   },
@@ -179,23 +363,65 @@ const OBJECTIVES = [
         text: "Plot the following GARS positions on the map.",
         gridRows: 40,
         gridCols: 40,
+        gridOffsetX: 0, // pixels from the LEFT edge of the image to where the  grid starts
+        gridOffsetY: 0, // pixels from the TOP  edge of the image to where the grid starts
+        gridWidth: null, // width  of the grid area in pixels (null = full image width  - offsetX)
+        gridHeight: null, // height of the grid area in pixels (null = full image height - offsetY)
         // CALIBRATION NEEDED: Set targetRow/targetCol to match the correct grid cells on image 4A2.png
         items: [
-          { id: 1, label: "Position 1", displayText: "185LC13", targetRow: 0, targetCol: 0 },
-          { id: 2, label: "Position 2", displayText: "183LB27", targetRow: 0, targetCol: 0 },
-          { id: 3, label: "Position 3", displayText: "185LA14", targetRow: 0, targetCol: 0 },
-          { id: 4, label: "Position 4", displayText: "183KZ22", targetRow: 0, targetCol: 0 },
-          { id: 5, label: "Position 5", displayText: "185KZ38", targetRow: 0, targetCol: 0 },
-          { id: 6, label: "Position 6", displayText: "184LC48", targetRow: 0, targetCol: 0 },
+          {
+            id: 1,
+            label: "Position 1",
+            displayText: "185LC13",
+            targetRow: 0,
+            targetCol: 0,
+          },
+          {
+            id: 2,
+            label: "Position 2",
+            displayText: "183LB27",
+            targetRow: 0,
+            targetCol: 0,
+          },
+          {
+            id: 3,
+            label: "Position 3",
+            displayText: "185LA14",
+            targetRow: 0,
+            targetCol: 0,
+          },
+          {
+            id: 4,
+            label: "Position 4",
+            displayText: "183KZ22",
+            targetRow: 0,
+            targetCol: 0,
+          },
+          {
+            id: 5,
+            label: "Position 5",
+            displayText: "185KZ38",
+            targetRow: 0,
+            targetCol: 0,
+          },
+          {
+            id: 6,
+            label: "Position 6",
+            displayText: "184LC48",
+            targetRow: 0,
+            targetCol: 0,
+          },
         ],
-        explanation: "Plot the following GARS positions. Ensure you label your plots with the corresponding number.",
+        explanation:
+          "Plot the following GARS positions. Ensure you label your plots with the corresponding number.",
       },
     ],
   },
   {
     id: 9,
     title: "Common Grid Reference System Static",
-    description: "Identify and convert CGRS Coordinates for the corresponding numbers.",
+    description:
+      "Identify and convert CGRS Coordinates for the corresponding numbers.",
     image: "images/5A.png",
     questions: [
       {
@@ -212,7 +438,8 @@ const OBJECTIVES = [
           { id: 5, label: "Position 5", latitude: "3C5", longitude: "NE" },
           { id: 6, label: "Position 6", latitude: "2B7", longitude: "SW" },
         ],
-        explanation: "Determine CGRS Coordinates for the corresponding numbers.",
+        explanation:
+          "Determine CGRS Coordinates for the corresponding numbers.",
       },
     ],
   },
@@ -228,16 +455,57 @@ const OBJECTIVES = [
         text: "Plot the following CGRS positions on the map.",
         gridRows: 40,
         gridCols: 40,
+        gridOffsetX: 0, // pixels from the LEFT edge of the image to where the  grid starts
+        gridOffsetY: 0, // pixels from the TOP  edge of the image to where the grid starts
+        gridWidth: null, // width  of the grid area in pixels (null = full image width  - offsetX)
+        gridHeight: null, // height of the grid area in pixels (null = full image height - offsetY)
         // CALIBRATION NEEDED: Set targetRow/targetCol to match the correct grid cells on image 5A2.png
         items: [
-          { id: 1, label: "Position 1", displayText: "1C2SE", targetRow: 0, targetCol: 0 },
-          { id: 2, label: "Position 2", displayText: "3C6NE", targetRow: 0, targetCol: 0 },
-          { id: 3, label: "Position 3", displayText: "1A6SW", targetRow: 0, targetCol: 0 },
-          { id: 4, label: "Position 4", displayText: "3B7NE", targetRow: 0, targetCol: 0 },
-          { id: 5, label: "Position 5", displayText: "2C4NW", targetRow: 0, targetCol: 0 },
-          { id: 6, label: "Position 6", displayText: "3B9SW", targetRow: 0, targetCol: 0 },
+          {
+            id: 1,
+            label: "Position 1",
+            displayText: "1C2SE",
+            targetRow: 0,
+            targetCol: 0,
+          },
+          {
+            id: 2,
+            label: "Position 2",
+            displayText: "3C6NE",
+            targetRow: 0,
+            targetCol: 0,
+          },
+          {
+            id: 3,
+            label: "Position 3",
+            displayText: "1A6SW",
+            targetRow: 0,
+            targetCol: 0,
+          },
+          {
+            id: 4,
+            label: "Position 4",
+            displayText: "3B7NE",
+            targetRow: 0,
+            targetCol: 0,
+          },
+          {
+            id: 5,
+            label: "Position 5",
+            displayText: "2C4NW",
+            targetRow: 0,
+            targetCol: 0,
+          },
+          {
+            id: 6,
+            label: "Position 6",
+            displayText: "3B9SW",
+            targetRow: 0,
+            targetCol: 0,
+          },
         ],
-        explanation: "Plot the following CGRS positions. Ensure you label your plots with the corresponding number.",
+        explanation:
+          "Plot the following CGRS positions. Ensure you label your plots with the corresponding number.",
       },
     ],
   },
@@ -273,6 +541,8 @@ const els = {
   protractorImg: document.getElementById("protractor-img"),
   imageSection: document.getElementById("image-section"),
   dropGrid: document.getElementById("drop-grid"),
+  coordDotsLayer: document.getElementById("coord-dots-layer"),
+  imgCoordTip: document.getElementById("img-coord-tip"),
   questionCounter: document.getElementById("question-counter"),
   questionText: document.getElementById("question-text"),
   questionForm: document.getElementById("question-form"),
@@ -414,10 +684,17 @@ function buildMultiBlankResult(question, userEntries) {
 
 // --- Multi-blank-spoken ---
 
-function createMultiBlankSpokenMarkup(question, savedValues = [], disabled = false) {
+function createMultiBlankSpokenMarkup(
+  question,
+  savedValues = [],
+  disabled = false,
+) {
   const rows = question.items
     .map((item, index) => {
-      const values = savedValues[index] || { bearingParts: ["", "", ""], rangeText: "" };
+      const values = savedValues[index] || {
+        bearingParts: ["", "", ""],
+        rangeText: "",
+      };
       return `
       <div class="multi-blank-row spoken-row">
         <div class="multi-blank-label">${escapeHtml(item.label || `Item ${item.id}`)}</div>
@@ -469,13 +746,17 @@ function getMultiBlankSpokenValues(question) {
 function buildMultiBlankSpokenResult(question, userEntries) {
   let correctCount = 0;
   question.items.forEach((item, index) => {
-    const entry = userEntries[index] || { bearingParts: ["", "", ""], rangeText: "" };
+    const entry = userEntries[index] || {
+      bearingParts: ["", "", ""],
+      rangeText: "",
+    };
     const bearingCorrect =
       entry.bearingParts.length === 3 &&
       entry.bearingParts.every(
         (part, i) => normalize(part) === normalize(item.bearingParts[i]),
       );
-    const rangeCorrect = normalize(entry.rangeText) === normalize(item.rangeText);
+    const rangeCorrect =
+      normalize(entry.rangeText) === normalize(item.rangeText);
     if (bearingCorrect && rangeCorrect) correctCount += 1;
   });
   return {
@@ -489,12 +770,18 @@ function buildMultiBlankSpokenResult(question, userEntries) {
 
 // --- Dragable ---
 
-function createDragableMarkup(question, savedPlacements = null, disabled = false) {
+function createDragableMarkup(
+  question,
+  savedPlacements = null,
+  disabled = false,
+) {
   dragState.placements = {};
   dragState.selectedDotId = null;
   if (savedPlacements) {
     savedPlacements.forEach((p) => {
-      if (p.row >= 0 && p.col >= 0) {
+      if (p.fx !== undefined) {
+        dragState.placements[p.id] = { fx: p.fx, fy: p.fy };
+      } else if (p.row >= 0 && p.col >= 0) {
         dragState.placements[p.id] = { row: p.row, col: p.col };
       }
     });
@@ -527,7 +814,7 @@ function createDragableMarkup(question, savedPlacements = null, disabled = false
   const placedCount = Object.keys(dragState.placements).length;
   return `
     <div class="dragable-panel">
-      <p class="dragable-instructions">Click a numbered dot below, then click the map to place it. Click a placed dot on the map to move it.</p>
+      <p class="dragable-instructions">${question.answerMode === "coordinate" ? "Click a dot below to select it, then click the map image to place it." : "Click a numbered dot below, then click the map to place it. Click a placed dot on the map to move it."}</p>
       <ul class="dragable-coord-list">${coordList}</ul>
       <p class="dragable-progress">${placedCount} / ${question.items.length} placed</p>
       <div class="dragable-dots">${dots}</div>
@@ -537,21 +824,36 @@ function createDragableMarkup(question, savedPlacements = null, disabled = false
 
 function buildDragableResult(question) {
   let correctCount = 0;
-  question.items.forEach((item) => {
-    const placement = dragState.placements[item.id];
-    if (
-      placement &&
-      placement.row === item.targetRow &&
-      placement.col === item.targetCol
-    ) {
-      correctCount += 1;
-    }
-  });
-  const userEntries = question.items.map((item) => ({
-    id: item.id,
-    row: dragState.placements[item.id]?.row ?? -1,
-    col: dragState.placements[item.id]?.col ?? -1,
-  }));
+  let userEntries;
+
+  if (question.answerMode === "coordinate") {
+    const img = els.scenarioImg;
+    question.items.forEach((item) => {
+      const p = dragState.placements[item.id];
+      if (!p) return;
+      const dx = p.fx * img.naturalWidth - item.targetX;
+      const dy = p.fy * img.naturalHeight - item.targetY;
+      if (Math.sqrt(dx * dx + dy * dy) <= (item.tolerance ?? 30))
+        correctCount += 1;
+    });
+    userEntries = question.items.map((item) => ({
+      id: item.id,
+      fx: dragState.placements[item.id]?.fx ?? -1,
+      fy: dragState.placements[item.id]?.fy ?? -1,
+    }));
+  } else {
+    question.items.forEach((item) => {
+      const p = dragState.placements[item.id];
+      if (p && p.row === item.targetRow && p.col === item.targetCol)
+        correctCount += 1;
+    });
+    userEntries = question.items.map((item) => ({
+      id: item.id,
+      row: dragState.placements[item.id]?.row ?? -1,
+      col: dragState.placements[item.id]?.col ?? -1,
+    }));
+  }
+
   return {
     type: question.type,
     isFullyCorrect: correctCount === question.items.length,
@@ -559,6 +861,54 @@ function buildDragableResult(question) {
     totalCount: question.items.length,
     userEntries,
   };
+}
+
+// --- Coordinate-click layer (for circular / non-grid images) ---
+
+function positionCoordLayer() {
+  if (els.coordDotsLayer.classList.contains("hidden")) return;
+  const img = els.scenarioImg;
+  if (!img.naturalWidth) return;
+  const imgRect = img.getBoundingClientRect();
+  const containerRect = els.imageSection.getBoundingClientRect();
+  els.coordDotsLayer.style.left = `${imgRect.left - containerRect.left}px`;
+  els.coordDotsLayer.style.top = `${imgRect.top - containerRect.top}px`;
+  els.coordDotsLayer.style.width = `${imgRect.width}px`;
+  els.coordDotsLayer.style.height = `${imgRect.height}px`;
+}
+
+function showCoordLayer(question) {
+  els.coordDotsLayer.classList.remove("hidden");
+  els.imageSection.classList.add("coord-mode");
+  if (els.scenarioImg.complete && els.scenarioImg.naturalWidth > 0) {
+    requestAnimationFrame(positionCoordLayer);
+  } else {
+    els.scenarioImg.addEventListener(
+      "load",
+      () => requestAnimationFrame(positionCoordLayer),
+      { once: true },
+    );
+  }
+}
+
+function renderCoordPlacements(question) {
+  els.coordDotsLayer
+    .querySelectorAll(".placed-dot-container")
+    .forEach((el) => el.remove());
+  Object.entries(dragState.placements).forEach(([dotIdStr, p]) => {
+    if (p.fx === undefined) return;
+    const dotId = Number(dotIdStr);
+    const container = document.createElement("div");
+    container.className = "placed-dot-container";
+    container.dataset.dotId = dotId;
+    container.style.left = `${p.fx * 100}%`;
+    container.style.top = `${p.fy * 100}%`;
+    container.innerHTML = `
+      <div class="drag-dot-marker placed-marker"></div>
+      <span class="placed-dot-label">${dotId}</span>
+    `;
+    els.coordDotsLayer.appendChild(container);
+  });
 }
 
 // --- Drop grid ---
@@ -583,17 +933,21 @@ function positionDropGrid() {
   const imgRect = img.getBoundingClientRect();
   const containerRect = els.imageSection.getBoundingClientRect();
 
-  const scaleX = imgRect.width  / img.naturalWidth;
+  const scaleX = imgRect.width / img.naturalWidth;
   const scaleY = imgRect.height / img.naturalHeight;
 
   const offsetX = (question?.gridOffsetX || 0) * scaleX;
   const offsetY = (question?.gridOffsetY || 0) * scaleY;
-  const gridW   = question?.gridWidth  ? question.gridWidth  * scaleX : imgRect.width  - offsetX;
-  const gridH   = question?.gridHeight ? question.gridHeight * scaleY : imgRect.height - offsetY;
+  const gridW = question?.gridWidth
+    ? question.gridWidth * scaleX
+    : imgRect.width - offsetX;
+  const gridH = question?.gridHeight
+    ? question.gridHeight * scaleY
+    : imgRect.height - offsetY;
 
-  els.dropGrid.style.left   = `${imgRect.left - containerRect.left + offsetX}px`;
-  els.dropGrid.style.top    = `${imgRect.top  - containerRect.top  + offsetY}px`;
-  els.dropGrid.style.width  = `${gridW}px`;
+  els.dropGrid.style.left = `${imgRect.left - containerRect.left + offsetX}px`;
+  els.dropGrid.style.top = `${imgRect.top - containerRect.top + offsetY}px`;
+  els.dropGrid.style.width = `${gridW}px`;
   els.dropGrid.style.height = `${gridH}px`;
 }
 
@@ -625,21 +979,32 @@ function showDropGrid(question) {
   if (els.scenarioImg.complete && els.scenarioImg.naturalWidth > 0) {
     requestAnimationFrame(positionDropGrid);
   } else {
-    els.scenarioImg.addEventListener("load", () => requestAnimationFrame(positionDropGrid), { once: true });
+    els.scenarioImg.addEventListener(
+      "load",
+      () => requestAnimationFrame(positionDropGrid),
+      { once: true },
+    );
   }
 }
 
 function hideDropGrid() {
   els.dropGrid.classList.add("hidden");
   els.dropGrid.innerHTML = "";
+  els.coordDotsLayer.classList.add("hidden");
+  els.coordDotsLayer.innerHTML = "";
+  els.imageSection.classList.remove("coord-mode");
 }
 
 function renderDropPlacements(question) {
-  els.dropGrid.querySelectorAll(".placed-dot-container").forEach((el) => el.remove());
+  els.dropGrid
+    .querySelectorAll(".placed-dot-container")
+    .forEach((el) => el.remove());
 
   Object.entries(dragState.placements).forEach(([dotIdStr, { row, col }]) => {
     const dotId = Number(dotIdStr);
-    const cell = els.dropGrid.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+    const cell = els.dropGrid.querySelector(
+      `[data-row="${row}"][data-col="${col}"]`,
+    );
     if (!cell) return;
 
     const container = document.createElement("div");
@@ -693,6 +1058,20 @@ function storeQuestionResult(objectiveId, questionIndex, result) {
     (sum, entry) => sum + (entry ? entry.correctCount : 0),
     0,
   );
+
+  const objective = getObjective(objectiveId);
+  console.group(
+    `%c Obj ${objectiveId}: ${objective?.title} — Q${questionIndex + 1} ` +
+      `| ${result.isFullyCorrect ? "✅ CORRECT" : "❌ INCORRECT"} ` +
+      `(${result.correctCount} / ${result.totalCount})`,
+    result.isFullyCorrect
+      ? "background:#1a4a1a;color:#7fff7f;padding:2px 4px;border-radius:3px"
+      : "background:#4a1a1a;color:#ff9f9f;padding:2px 4px;border-radius:3px",
+  );
+  console.log("User entries:", result.userEntries);
+  console.log("Full result:", result);
+  console.log("Objective running total:", score.correct, "correct");
+  console.groupEnd();
 }
 
 // --- Question loading ---
@@ -727,11 +1106,18 @@ function loadQuestion(index) {
       isAnswered ? storedResult.userEntries : null,
       isAnswered,
     );
-    showDropGrid(question);
+    if (question.answerMode === "coordinate") {
+      showCoordLayer(question);
+      if (isAnswered) renderCoordPlacements(question);
+    } else {
+      showDropGrid(question);
+    }
   }
 
   if (question.type === "dragable") {
-    els.btnSubmit.disabled = isAnswered || Object.keys(dragState.placements).length < question.items.length;
+    els.btnSubmit.disabled =
+      isAnswered ||
+      Object.keys(dragState.placements).length < question.items.length;
   } else {
     els.btnSubmit.disabled = isAnswered;
   }
@@ -764,7 +1150,8 @@ function submitAnswer() {
   const question = getCurrentQuestion();
   if (!question) return;
 
-  const existingResult = appState.scores[objective.id].answered[appState.currentQuestionIndex];
+  const existingResult =
+    appState.scores[objective.id].answered[appState.currentQuestionIndex];
   if (existingResult) return;
 
   let result;
@@ -775,10 +1162,12 @@ function submitAnswer() {
     result = buildMultiBlankResult(question, userEntries);
   } else if (question.type === "multi-blank-spoken") {
     const userEntries = getMultiBlankSpokenValues(question);
-    if (!userEntries.some((e) => e.bearingParts.some(Boolean) || e.rangeText)) return;
+    if (!userEntries.some((e) => e.bearingParts.some(Boolean) || e.rangeText))
+      return;
     result = buildMultiBlankSpokenResult(question, userEntries);
   } else if (question.type === "dragable") {
-    if (Object.keys(dragState.placements).length < question.items.length) return;
+    if (Object.keys(dragState.placements).length < question.items.length)
+      return;
     result = buildDragableResult(question);
   }
 
@@ -813,7 +1202,9 @@ function renderProgressSidebar() {
   els.progressList.innerHTML = objective.questions
     .map((_, index) => {
       const result = score.answered[index];
-      const label = result ? `Q${index + 1}: Submitted` : `Q${index + 1}: \u2014`;
+      const label = result
+        ? `Q${index + 1}: Submitted`
+        : `Q${index + 1}: \u2014`;
       const className = `progress-item${result ? " submitted" : ""}`;
       return `<li class="${className}">${label}</li>`;
     })
@@ -839,7 +1230,9 @@ function renderResults() {
     totalPossible += objectiveTotal;
 
     const percent =
-      objectiveTotal > 0 ? Math.round((objectiveCorrect / objectiveTotal) * 100) : 0;
+      objectiveTotal > 0
+        ? Math.round((objectiveCorrect / objectiveTotal) * 100)
+        : 0;
     const row = document.createElement("tr");
     row.innerHTML = `
       <td>Obj ${objective.id}: ${objective.title}</td>
@@ -872,11 +1265,24 @@ function goToNextQuestion() {
 
 function renderLandingViewResultsBtn() {
   if (!els.viewResultsBtnArea) return;
-  if (allObjectivesAnswered()) {
+  const completedCount = OBJECTIVES.filter((obj) => {
+    const score = appState.scores[obj.id];
+    return (
+      score.answered.length === obj.questions.length &&
+      score.answered.every((a) => a !== undefined)
+    );
+  }).length;
+  const total = OBJECTIVES.length;
+
+  if (completedCount === total) {
     els.viewResultsBtnArea.innerHTML = `
       <button id="btn-view-results" class="btn-primary btn-view-results" type="button">
-        View Results
+        &#10003; All Objectives Submitted &mdash; View Results
       </button>
+    `;
+  } else if (completedCount > 0) {
+    els.viewResultsBtnArea.innerHTML = `
+      <p class="landing-progress-msg">${completedCount} / ${total} objectives submitted</p>
     `;
   } else {
     els.viewResultsBtnArea.innerHTML = "";
@@ -890,11 +1296,14 @@ function renderLandingCards() {
       score.answered.length === objective.questions.length &&
       score.answered.every((a) => a !== undefined);
     return `
-      <article class="obj-card">
-        <div class="card-number">${String(objective.id).padStart(2, "0")}</div>
+      <article class="obj-card ${allAnswered ? "obj-card--completed" : ""}">
+        <div class="card-header-row">
+          <div class="card-number">${String(objective.id).padStart(2, "0")}</div>
+          ${allAnswered ? `<span class="card-complete-badge">&#10003; Submitted</span>` : ""}
+        </div>
         <h2 class="card-title">${objective.title}</h2>
         <p class="card-desc">${objective.description}</p>
-        <button class="btn-start" type="button" data-objective="${objective.id}">
+        <button class="btn-start ${allAnswered ? "btn-start--done" : ""}" type="button" data-objective="${objective.id}">
           ${allAnswered ? "Review" : "Start"}
         </button>
       </article>
@@ -1040,9 +1449,103 @@ function bindEvents() {
 
   window.addEventListener("resize", () => {
     const q = getCurrentQuestion();
-    if (q?.type === "dragable" && !els.dropGrid.classList.contains("hidden")) {
-      positionDropGrid();
+    if (q?.type !== "dragable") return;
+    if (!els.dropGrid.classList.contains("hidden")) positionDropGrid();
+    if (!els.coordDotsLayer.classList.contains("hidden")) positionCoordLayer();
+  });
+
+  // Coordinate mode: place dot on image click
+  els.imageSection.addEventListener("click", (event) => {
+    const question = getCurrentQuestion();
+    if (
+      !question ||
+      question.type !== "dragable" ||
+      question.answerMode !== "coordinate"
+    )
+      return;
+    if (
+      appState.scores[appState.currentObjectiveId]?.answered[
+        appState.currentQuestionIndex
+      ]
+    )
+      return;
+
+    const imgRect = els.scenarioImg.getBoundingClientRect();
+    const clickX = event.clientX - imgRect.left;
+    const clickY = event.clientY - imgRect.top;
+    if (
+      clickX < 0 ||
+      clickX > imgRect.width ||
+      clickY < 0 ||
+      clickY > imgRect.height
+    )
+      return;
+
+    const clickedContainer = event.target.closest(".placed-dot-container");
+
+    // Click on placed dot with no selection → pick it up
+    if (clickedContainer && dragState.selectedDotId === null) {
+      const dotId = Number(clickedContainer.dataset.dotId);
+      delete dragState.placements[dotId];
+      dragState.selectedDotId = dotId;
+      renderCoordPlacements(question);
+      updateDragablePanelProgress(question);
+      els.questionForm
+        .querySelectorAll(".drag-dot")
+        .forEach((d) => d.classList.remove("selected"));
+      const dot = els.questionForm.querySelector(`[data-dot-id="${dotId}"]`);
+      if (dot) dot.classList.add("selected");
+      return;
     }
+
+    if (dragState.selectedDotId === null) return;
+
+    // Displace existing dot if clicking its position
+    if (clickedContainer) {
+      delete dragState.placements[Number(clickedContainer.dataset.dotId)];
+    }
+
+    dragState.placements[dragState.selectedDotId] = {
+      fx: clickX / imgRect.width,
+      fy: clickY / imgRect.height,
+    };
+    dragState.selectedDotId = null;
+    els.questionForm
+      .querySelectorAll(".drag-dot")
+      .forEach((d) => d.classList.remove("selected"));
+    renderCoordPlacements(question);
+    updateDragablePanelProgress(question);
+  });
+
+  // Coordinate mode: pixel tooltip for calibration
+  els.imageSection.addEventListener("mousemove", (event) => {
+    const question = getCurrentQuestion();
+    if (!question || question.answerMode !== "coordinate") {
+      els.imgCoordTip.classList.add("hidden");
+      return;
+    }
+    const img = els.scenarioImg;
+    if (!img.naturalWidth) return;
+    const imgRect = img.getBoundingClientRect();
+    const nx = Math.round(
+      ((event.clientX - imgRect.left) / imgRect.width) * img.naturalWidth,
+    );
+    const ny = Math.round(
+      ((event.clientY - imgRect.top) / imgRect.height) * img.naturalHeight,
+    );
+    if (nx < 0 || nx > img.naturalWidth || ny < 0 || ny > img.naturalHeight) {
+      els.imgCoordTip.classList.add("hidden");
+      return;
+    }
+    const containerRect = els.imageSection.getBoundingClientRect();
+    els.imgCoordTip.textContent = `x:${nx} y:${ny}`;
+    els.imgCoordTip.style.left = `${event.clientX - containerRect.left + 14}px`;
+    els.imgCoordTip.style.top = `${event.clientY - containerRect.top - 28}px`;
+    els.imgCoordTip.classList.remove("hidden");
+  });
+
+  els.imageSection.addEventListener("mouseleave", () => {
+    els.imgCoordTip.classList.add("hidden");
   });
 
   els.btnToggleProtr.addEventListener("click", () => {
@@ -1055,7 +1558,10 @@ function bindEvents() {
 
   els.questionForm.addEventListener("keydown", (event) => {
     if (event.key !== "Enter" || event.shiftKey) return;
-    if (event.target.tagName === "TEXTAREA" || event.target.tagName === "INPUT") {
+    if (
+      event.target.tagName === "TEXTAREA" ||
+      event.target.tagName === "INPUT"
+    ) {
       event.preventDefault();
       submitAnswer();
     }
@@ -1065,14 +1571,26 @@ function bindEvents() {
   els.questionForm.addEventListener("click", (event) => {
     const question = getCurrentQuestion();
     if (!question || question.type !== "dragable") return;
-    if (appState.scores[appState.currentObjectiveId]?.answered[appState.currentQuestionIndex]) return;
+    if (
+      appState.scores[appState.currentObjectiveId]?.answered[
+        appState.currentQuestionIndex
+      ]
+    )
+      return;
 
     const dot = event.target.closest(".drag-dot");
-    if (!dot || dot.classList.contains("placed") || dot.classList.contains("disabled-dot")) return;
+    if (
+      !dot ||
+      dot.classList.contains("placed") ||
+      dot.classList.contains("disabled-dot")
+    )
+      return;
 
     const dotId = Number(dot.dataset.dotId);
     dragState.selectedDotId = dotId;
-    els.questionForm.querySelectorAll(".drag-dot").forEach((d) => d.classList.remove("selected"));
+    els.questionForm
+      .querySelectorAll(".drag-dot")
+      .forEach((d) => d.classList.remove("selected"));
     dot.classList.add("selected");
   });
 
@@ -1080,7 +1598,12 @@ function bindEvents() {
   els.dropGrid.addEventListener("click", (event) => {
     const question = getCurrentQuestion();
     if (!question || question.type !== "dragable") return;
-    if (appState.scores[appState.currentObjectiveId]?.answered[appState.currentQuestionIndex]) return;
+    if (
+      appState.scores[appState.currentObjectiveId]?.answered[
+        appState.currentQuestionIndex
+      ]
+    )
+      return;
 
     const cell = event.target.closest(".drop-cell");
     if (!cell) return;
@@ -1096,7 +1619,9 @@ function bindEvents() {
       dragState.selectedDotId = dotId;
       renderDropPlacements(question);
       updateDragablePanelProgress(question);
-      els.questionForm.querySelectorAll(".drag-dot").forEach((d) => d.classList.remove("selected"));
+      els.questionForm
+        .querySelectorAll(".drag-dot")
+        .forEach((d) => d.classList.remove("selected"));
       const dot = els.questionForm.querySelector(`[data-dot-id="${dotId}"]`);
       if (dot) dot.classList.add("selected");
       return;
@@ -1112,7 +1637,9 @@ function bindEvents() {
 
     dragState.placements[dragState.selectedDotId] = { row, col };
     dragState.selectedDotId = null;
-    els.questionForm.querySelectorAll(".drag-dot").forEach((d) => d.classList.remove("selected"));
+    els.questionForm
+      .querySelectorAll(".drag-dot")
+      .forEach((d) => d.classList.remove("selected"));
 
     renderDropPlacements(question);
     updateDragablePanelProgress(question);
@@ -1126,4 +1653,39 @@ document.addEventListener("DOMContentLoaded", () => {
   initProtractor();
   bindEvents();
   navigateTo("landing");
+
+  // DevTools helpers — inspect state at any time in the browser console:
+  //   window.appState       → full application state including all stored answers
+  //   window.debugScores()  → formatted score summary for all objectives
+  window.appState = appState;
+  window.debugScores = function () {
+    console.group("%c 📊 Score Summary", "font-weight:bold;font-size:1.1em");
+    let totalCorrect = 0;
+    let totalPossible = 0;
+    OBJECTIVES.forEach((obj) => {
+      const score = appState.scores[obj.id];
+      const possible = obj.questions.reduce((s, q) => s + q.items.length, 0);
+      totalCorrect += score.correct;
+      totalPossible += possible;
+      const answered = score.answered.filter(Boolean).length;
+      console.group(
+        `Obj ${obj.id}: ${obj.title} — ${score.correct}/${possible} (${answered}/${obj.questions.length} questions answered)`,
+      );
+      score.answered.forEach((result, i) => {
+        if (!result) return;
+        console.log(
+          `Q${i + 1}: ${result.isFullyCorrect ? "✅" : "❌"} ${result.correctCount}/${result.totalCount}`,
+          result.userEntries,
+        );
+      });
+      console.groupEnd();
+    });
+    const pct =
+      totalPossible > 0 ? Math.round((totalCorrect / totalPossible) * 100) : 0;
+    console.log(
+      `%cOverall: ${totalCorrect}/${totalPossible} (${pct}%)`,
+      "font-weight:bold",
+    );
+    console.groupEnd();
+  };
 });
