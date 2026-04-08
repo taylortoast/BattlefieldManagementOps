@@ -1,0 +1,21 @@
+# Claude Code internal files
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.suo
+*.user
+
+# Logs
+*.log
+
+# Temp
+*.tmp
+*.bak
+*~

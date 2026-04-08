@@ -1,11 +1,8 @@
-//TODO: Fix result submission button. Submission function is not working.
-//TODO: Need to defer all question evaluations to the final results page. The final results page should only be displayed after submission of all questions.
 const OBJECTIVES = [
   {
     id: 1,
-    title: "Bearing and Range",
-    description:
-      "Calculate bearing and range to marked target points using the scenario map.",
+    title: "Bearing and Range Static",
+    description: "Calculate bearing and range to marked target points using the scenario map.",
     image: "images/1A.png",
     questions: [
       {
@@ -14,61 +11,38 @@ const OBJECTIVES = [
         text: "Using the map, determine the magnetic bearing and range for each numbered position.",
         items: [
           { id: 1, bearingParts: ["zero", "one", "zero"], rangeText: "fifty" },
-          {
-            id: 2,
-            bearingParts: ["zero", "four", "zero"],
-            rangeText: "ninety",
-          },
-          {
-            id: 3,
-            bearingParts: ["one", "zero", "zero"],
-            rangeText: "one hundred forty",
-          },
-          {
-            id: 4,
-            bearingParts: ["one", "eight", "zero"],
-            rangeText: "seventy",
-          },
-          {
-            id: 5,
-            bearingParts: ["two", "five", "zero"],
-            rangeText: "one hundred twenty",
-          },
-          {
-            id: 6,
-            bearingParts: ["three", "two", "zero"],
-            rangeText: "one hundred ten",
-          },
+          { id: 2, bearingParts: ["zero", "four", "zero"], rangeText: "ninety" },
+          { id: 3, bearingParts: ["one", "zero", "zero"], rangeText: "one hundred forty" },
+          { id: 4, bearingParts: ["one", "eight", "zero"], rangeText: "seventy" },
+          { id: 5, bearingParts: ["two", "five", "zero"], rangeText: "one hundred twenty" },
+          { id: 6, bearingParts: ["three", "two", "zero"], rangeText: "one hundred ten" },
         ],
-        explanation:
-          "Enter the bearing as three spoken words and the range as spoken text.",
+        explanation: "Enter the bearing as three spoken words and the range as spoken text.",
       },
     ],
   },
   {
     id: 2,
-    title: "Bearing and Range",
-    description:
-      "Drag each marker to its correct position according to the provided bearing and range posistions.",
-    //Official Answers:
-    // 1. two two zero, range thirty
-    // 2. one zero zero, range fifty
-    // 3. zero five zero, range one hundred thirty
-    // 4. one two zero, range one hundred twenty
-    // 5. three one zero, range sixty
-    // 6. one one zero, range eighty
-
+    title: "Bearing and Range Dynamic",
+    description: "Place each numbered marker at the correct bearing and range position on the map.",
     image: "images/1A2.png",
     questions: [
       {
         id: 1,
-        type: "multi-blank-spoken",
-        text: "Using the map, determine the magnetic bearing and range for each numbered position.",
+        type: "dragable",
+        text: "Place each numbered marker at the correct bearing and range position on the map.",
+        gridRows: 40,
+        gridCols: 40,
+        // CALIBRATION NEEDED: Set targetRow/targetCol to match the correct grid cells on image 1A2.png
         items: [
-          //TODO: Need to create question items here simular to question id:2 items, but with a change. Users will be required to place dragable objects onto the image. Each dragable object placement should return a relative latitude and longitude position of the dragable object. There will be six objects, displayed in a side panel, from which the user can select, drag to target position, and place. Again this will commit the latitude and longitude coordinates to the question's answer. This question will therefore have a six part answer. The answers will be in the same shape as question id:2's answers. Static answers will be coded in to determine correctness. I would suggest creating a grid of cells for possition tracking that can be overlayed on to the provided image. Dragging the object to the specified cell and dropping/placing the object on that cell will determine a user's answer as correct. The dragable object will consist of a provided image of a dot. All dragable objects will use the same image. This question can be of the type dragable. Each target point's required latitude and longitude will be provided within the qa panel. The placement of all six dragable objects will be required before the student can submit their answer. The user will not be provided the evaluation of the question until the final results page, which is seen after all questions are completed.
+          { id: 1, label: "Position 1", displayText: "two two zero, range thirty", targetRow: 0, targetCol: 0 },
+          { id: 2, label: "Position 2", displayText: "one zero zero, range fifty", targetRow: 0, targetCol: 0 },
+          { id: 3, label: "Position 3", displayText: "zero five zero, range one hundred thirty", targetRow: 0, targetCol: 0 },
+          { id: 4, label: "Position 4", displayText: "one two zero, range one hundred twenty", targetRow: 0, targetCol: 0 },
+          { id: 5, label: "Position 5", displayText: "three one zero, range sixty", targetRow: 0, targetCol: 0 },
+          { id: 6, label: "Position 6", displayText: "one one zero, range eighty", targetRow: 0, targetCol: 0 },
         ],
-        explanation:
-          "Enter the bearing as three spoken words and the range as spoken text.",
+        explanation: "Place each numbered dot at the correct bearing and range position.",
       },
     ],
   },
@@ -82,49 +56,41 @@ const OBJECTIVES = [
         id: 1,
         type: "multi-blank",
         text: "Latitude/Longitude Coordinates for each target?",
-        //Official Answers:
-        //1. 2945S 08115E
-        //2. 2930S 08430E
-        //3. 3015S 08530E
-        //4. 3145S 08315E
-        //5. 3115S 08545E
-        //6. 3245S 08445E
+        fieldPlaceholders: ["e.g. 2945S", "e.g. 08115E"],
         items: [
-          { id: 1, label: "Target 1", latitude: "2945", longitude: "08115" },
-          { id: 2, label: "Target 2", latitude: "2930", longitude: "08430" },
-          { id: 3, label: "Target 3", latitude: "3015", longitude: "08530" },
-          { id: 4, label: "Target 4", latitude: "3145", longitude: "08315" },
-          { id: 5, label: "Target 5", latitude: "3115", longitude: "08545" },
-          { id: 6, label: "Target 6", latitude: "3245", longitude: "08445" },
+          { id: 1, label: "Target 1", latitude: "2945S", longitude: "08115E" },
+          { id: 2, label: "Target 2", latitude: "2930S", longitude: "08430E" },
+          { id: 3, label: "Target 3", latitude: "3015S", longitude: "08530E" },
+          { id: 4, label: "Target 4", latitude: "3145S", longitude: "08315E" },
+          { id: 5, label: "Target 5", latitude: "3115S", longitude: "08545E" },
+          { id: 6, label: "Target 6", latitude: "3245S", longitude: "08445E" },
         ],
-        explanation:
-          "Determine Latitude/Longitude Coordinates for the marked positions.",
+        explanation: "Determine Latitude/Longitude Coordinates for the marked positions.",
       },
     ],
   },
   {
     id: 4,
     title: "Lat / Long Dynamic",
-    description:
-      "Drag each marker to its correct latitude and longitude coordinates.",
+    description: "Drag each marker to its correct latitude and longitude position on the map.",
     image: "images/2A2.png",
     questions: [
       {
         id: 1,
         type: "dragable",
-        text: "Latitude/Longitude Coordinates for each target?",
-        //Official Answers:
-        //1. 16S FL 2884 4964
-        //2. 16S FL 3156 4913
-        //3. 16S FL 3315 4906
-        //4. 16S FL 3000 4860
-        //5. 16S FL 2828 4744
-        //6. 16S FL 3368 4791
+        text: "Plot the following Lat/Long positions on the map.",
+        gridRows: 40,
+        gridCols: 40,
+        // CALIBRATION NEEDED: Set targetRow/targetCol to match the correct grid cells on image 2A2.png
         items: [
-          //TODO: Need to create question items here simular to question id:2 items, but with a change. Users will be required to place dragable objects onto the image. Each dragable object placement should return a relative latitude and longitude position of the dragable object. There will be six objects, displayed in a side panel, from which the user can select, drag to target position, and place. Again this will commit the latitude and longitude coordinates to the question's answer. This question will therefore have a six part answer. The answers will be in the same shape as question id:2's answers. Static answers will be coded in to determine correctness. I would suggest creating a grid of cells for possition tracking that can be overlayed on to the provided image. Dragging the object to the specified cell and dropping/placing the object on that cell will determine a user's answer as correct. The dragable object will consist of a provided image of a dot. All dragable objects will use the same image. This question can be of the type dragable. Each target point's required latitude and longitude will be provided within the qa panel. The placement of all six dragable objects will be required before the student can submit their answer. The user will not be provided the evaluation of the question until the final results page, which is seen after all questions are completed.
+          { id: 1, label: "Position 1", displayText: "2930S 08330E", targetRow: 0, targetCol: 0 },
+          { id: 2, label: "Position 2", displayText: "3015S 08315E", targetRow: 0, targetCol: 0 },
+          { id: 3, label: "Position 3", displayText: "3115S 08415E", targetRow: 0, targetCol: 0 },
+          { id: 4, label: "Position 4", displayText: "3230S 08230E", targetRow: 0, targetCol: 0 },
+          { id: 5, label: "Position 5", displayText: "2915S 08545E", targetRow: 0, targetCol: 0 },
+          { id: 6, label: "Position 6", displayText: "3045S 08445E", targetRow: 0, targetCol: 0 },
         ],
-        explanation:
-          "Plot the following Lat/Long Position. Ensure you label you plots with the corresponding number.",
+        explanation: "Plot the following Lat/Long positions. Ensure you label your plots with the corresponding number.",
       },
     ],
   },
@@ -137,167 +103,141 @@ const OBJECTIVES = [
       {
         id: 1,
         type: "multi-blank",
-        text: "Determine MGRS Coordinates for each marked postition",
-        //Official Answers:
-        //1. 16S FL 2884 4964
-        //2. 16S FL 3156 4913
-        //3. 16S FL 3315 4906
-        //4. 16S FL 3000 4860
-        //5. 16S FL 2828 4744
-        //6. 16S FL 3368 4791
-
+        text: "Determine MGRS Coordinates for each marked position.",
+        fieldLabels: ["Grid Zone + Square", "Easting / Northing"],
+        fieldPlaceholders: ["e.g. 16SFL", "e.g. 28844964"],
         items: [
-          { id: 1, label: "Postition 1", latitude: "2945", longitude: "08115" },
-          { id: 2, label: "Postition 2", latitude: "2930", longitude: "08430" },
-          { id: 3, label: "Postition 3", latitude: "3015", longitude: "08530" },
-          { id: 4, label: "Postition 4", latitude: "3145", longitude: "08315" },
-          { id: 5, label: "Postition 5", latitude: "3115", longitude: "08545" },
-          { id: 6, label: "Postition 6", latitude: "3245", longitude: "08445" },
+          { id: 1, label: "Position 1", latitude: "16SFL", longitude: "28844964" },
+          { id: 2, label: "Position 2", latitude: "16SFL", longitude: "31564913" },
+          { id: 3, label: "Position 3", latitude: "16SFL", longitude: "33154906" },
+          { id: 4, label: "Position 4", latitude: "16SFL", longitude: "30004860" },
+          { id: 5, label: "Position 5", latitude: "16SFL", longitude: "28284744" },
+          { id: 6, label: "Position 6", latitude: "16SFL", longitude: "33684791" },
         ],
-        explanation:
-          "Determine GARS Coordinates for the corresponding numbers.",
+        explanation: "Determine MGRS Coordinates for the marked positions.",
       },
     ],
   },
   {
     id: 6,
     title: "MGRS Coordinates Dynamic",
-    description: "Drag each marker to its correct 10-meter MGRS Coordinates.",
-    //Research guidance on MGRS Coordinates. Check MGRS_Coordinate_Guide.md
+    description: "Drag each marker to its correct 10-meter MGRS position on the map.",
     image: "images/3A2.png",
     questions: [
       {
         id: 1,
         type: "dragable",
-        text: "Determine MGRS Coordinates for each marked postition",
-        //Official Answers:
-        //1. 16SFL29734966
-        //2. 16SFL32074967
-        //3. 16SFL28174820
-        //4. 16SFL31364870
-        //5. 16SFL30764757
-        //6. 16SFL31624730
+        text: "Plot the following MGRS coordinates on the map.",
+        gridRows: 27,
+        gridCols: 40,
+        // CALIBRATION NEEDED: Set targetRow/targetCol to match the correct grid cells on image 3A2.png
         items: [
-          //TODO: Need to create question items here simular to question id:4 items, but with a change. Users will be required to place dragable objects onto the image. Each dragable object placement should return a relative latitude and longitude position of the dragable object. There will be six objects, displayed in a side panel, from which the user can select, drag to target position, and place. Again this will commit the latitude and longitude coordinates to the question's answer. This question will therefore have a six part answer. The answers will be in the same shape as question id:2's answers. Static answers will be coded in to determine correctness. I would suggest creating a grid of cells for possition tracking that can be overlayed on to the provided image. Dragging the object to the specified cell and dropping/placing the object on that cell will determine a user's answer as correct. The dragable object will consist of a provided image of a dot. All dragable objects will use the same image. This question can be of the type dragable. Each target point's required latitude and longitude will be provided within the qa panel. The placement of all six dragable objects will be required before the student can submit their answer. The user will not be provided the evaluation of the question until the final results page, which is seen after all questions are completed.
+          { id: 1, label: "Position 1", displayText: "16SFL29734966", targetRow: 0, targetCol: 0 },
+          { id: 2, label: "Position 2", displayText: "16SFL32074967", targetRow: 0, targetCol: 0 },
+          { id: 3, label: "Position 3", displayText: "16SFL28174820", targetRow: 0, targetCol: 0 },
+          { id: 4, label: "Position 4", displayText: "16SFL31364870", targetRow: 0, targetCol: 0 },
+          { id: 5, label: "Position 5", displayText: "16SFL30764757", targetRow: 0, targetCol: 0 },
+          { id: 6, label: "Position 6", displayText: "16SFL31624730", targetRow: 0, targetCol: 0 },
         ],
-        explanation:
-          "Plot the following MGRS coordinates. Ensure you label you plots with the corresponding number.",
+        explanation: "Plot the following MGRS coordinates. Ensure you label your plots with the corresponding number.",
       },
     ],
   },
   {
     id: 7,
     title: "Global Area Reference System Static",
-    description:
-      "Identify and convert GARS Coordinates for the corresponding numbers.",
+    description: "Identify and convert GARS Coordinates for the corresponding numbers.",
     image: "images/4A.png",
     questions: [
       {
         id: 1,
         type: "multi-blank",
         text: "Determine GARS Coordinates for the corresponding numbers.",
-        //Official Answers:
-        // 1. 184KZ35
-        // 2. 184LC46
-        // 3. 183KZ29
-        // 4. 184LB11
-        // 5. 185KZ42
-        // 6. 183LA23
+        fieldLabels: ["Grid", "Quadrant"],
+        fieldPlaceholders: ["e.g. 184KZ", "e.g. 35"],
         items: [
-          { id: 1, label: "Postition 1", latitude: "2945", longitude: "08115" },
-          { id: 2, label: "Postition 2", latitude: "2930", longitude: "08430" },
-          { id: 3, label: "Postition 3", latitude: "3015", longitude: "08530" },
-          { id: 4, label: "Postition 4", latitude: "3145", longitude: "08315" },
-          { id: 5, label: "Postition 5", latitude: "3115", longitude: "08545" },
-          { id: 6, label: "Postition 6", latitude: "3245", longitude: "08445" },
+          { id: 1, label: "Position 1", latitude: "184KZ", longitude: "35" },
+          { id: 2, label: "Position 2", latitude: "184LC", longitude: "46" },
+          { id: 3, label: "Position 3", latitude: "183KZ", longitude: "29" },
+          { id: 4, label: "Position 4", latitude: "184LB", longitude: "11" },
+          { id: 5, label: "Position 5", latitude: "185KZ", longitude: "42" },
+          { id: 6, label: "Position 6", latitude: "183LA", longitude: "23" },
         ],
-        explanation:
-          "Determine GARS Coordinates for the corresponding numbers.",
+        explanation: "Determine GARS Coordinates for the corresponding numbers.",
       },
     ],
   },
   {
     id: 8,
     title: "Global Area Reference System Dynamic",
-    description:
-      "Drag each marker to its correct GARS Coordinates for the corresponding numbers.",
-    //Research guidance on GARS Coordinates. Check GARS_Coordinate_Guide.md
+    description: "Drag each marker to its correct GARS position on the map.",
     image: "images/4A2.png",
     questions: [
       {
         id: 1,
         type: "dragable",
-        text: "Determine GARS Coordinates for the corresponding numbers.",
-        //Official Answers:
-        // 1. 185LC13
-        // 2. 183LB27
-        // 3. 185LA14
-        // 4. 183KZ22
-        // 5. 185KZ38
-        // 6. 184LC48
+        text: "Plot the following GARS positions on the map.",
+        gridRows: 40,
+        gridCols: 40,
+        // CALIBRATION NEEDED: Set targetRow/targetCol to match the correct grid cells on image 4A2.png
         items: [
-          //TODO: Need to create question items here simular to question id:4 items, but with a change. Users will be required to place dragable objects onto the image. Each dragable object placement should return a relative latitude and longitude position of the dragable object. There will be six objects, displayed in a side panel, from which the user can select, drag to target position, and place. Again this will commit the latitude and longitude coordinates to the question's answer. This question will therefore have a six part answer. The answers will be in the same shape as question id:2's answers. Static answers will be coded in to determine correctness. I would suggest creating a grid of cells for possition tracking that can be overlayed on to the provided image. Dragging the object to the specified cell and dropping/placing the object on that cell will determine a user's answer as correct. The dragable object will consist of a provided image of a dot. All dragable objects will use the same image. This question can be of the type dragable. Each target point's required latitude and longitude will be provided within the qa panel. The placement of all six dragable objects will be required before the student can submit their answer. The user will not be provided the evaluation of the question until the final results page, which is seen after all questions are completed.
+          { id: 1, label: "Position 1", displayText: "185LC13", targetRow: 0, targetCol: 0 },
+          { id: 2, label: "Position 2", displayText: "183LB27", targetRow: 0, targetCol: 0 },
+          { id: 3, label: "Position 3", displayText: "185LA14", targetRow: 0, targetCol: 0 },
+          { id: 4, label: "Position 4", displayText: "183KZ22", targetRow: 0, targetCol: 0 },
+          { id: 5, label: "Position 5", displayText: "185KZ38", targetRow: 0, targetCol: 0 },
+          { id: 6, label: "Position 6", displayText: "184LC48", targetRow: 0, targetCol: 0 },
         ],
-        explanation:
-          "Plot the following GARS Position. Ensure you label you plots with the corresponding number.",
+        explanation: "Plot the following GARS positions. Ensure you label your plots with the corresponding number.",
       },
     ],
   },
   {
     id: 9,
     title: "Common Grid Reference System Static",
-    description:
-      "Identify and convert CGRS Coordinates for the corresponding numbers.",
+    description: "Identify and convert CGRS Coordinates for the corresponding numbers.",
     image: "images/5A.png",
     questions: [
       {
         id: 1,
         type: "multi-blank",
         text: "Determine CGRS Coordinates for the corresponding numbers.",
-        //Official Answers:
-        // 1. 1B2NW
-        // 2. 2B5NE
-        // 3. 1A2SW
-        // 4. 2C3NE
-        // 5. 3C5NE
-        // 6. 2B7SW
+        fieldLabels: ["Grid", "Quadrant"],
+        fieldPlaceholders: ["e.g. 1B2", "e.g. NW"],
         items: [
-          { id: 1, label: "Postition 1", latitude: "2945", longitude: "08115" },
-          { id: 2, label: "Postition 2", latitude: "2930", longitude: "08430" },
-          { id: 3, label: "Postition 3", latitude: "3015", longitude: "08530" },
-          { id: 4, label: "Postition 4", latitude: "3145", longitude: "08315" },
-          { id: 5, label: "Postition 5", latitude: "3115", longitude: "08545" },
-          { id: 6, label: "Postition 6", latitude: "3245", longitude: "08445" },
+          { id: 1, label: "Position 1", latitude: "1B2", longitude: "NW" },
+          { id: 2, label: "Position 2", latitude: "2B5", longitude: "NE" },
+          { id: 3, label: "Position 3", latitude: "1A2", longitude: "SW" },
+          { id: 4, label: "Position 4", latitude: "2C3", longitude: "NE" },
+          { id: 5, label: "Position 5", latitude: "3C5", longitude: "NE" },
+          { id: 6, label: "Position 6", latitude: "2B7", longitude: "SW" },
         ],
-        explanation:
-          "Plot the following CGRS Position. Ensure you label you plots with the corresponding number.",
+        explanation: "Determine CGRS Coordinates for the corresponding numbers.",
       },
     ],
   },
   {
     id: 10,
     title: "Common Grid Reference System Dynamic",
-    description:
-      "Drag each marker to its correct CGRS Coordinates for the corresponding numbers.",
-    //Research guidance on CGRS Coordinates. Check CGRS_Coordinate_Guide.md
+    description: "Drag each marker to its correct CGRS position on the map.",
     image: "images/5A2.png",
     questions: [
       {
         id: 1,
         type: "dragable",
-        text: "Determine CGRS Coordinates for the corresponding numbers.",
-        //Official Answers:
-        // 1. 1C2SE
-        // 2. 3C6NE
-        // 3. 1A6SW
-        // 4. 3B7NE
-        // 5. 2C4NW
-        // 6. 3B9SW
+        text: "Plot the following CGRS positions on the map.",
+        gridRows: 40,
+        gridCols: 40,
+        // CALIBRATION NEEDED: Set targetRow/targetCol to match the correct grid cells on image 5A2.png
         items: [
-          //TODO: Need to create question items here simular to question id:4 items, but with a change. Users will be required to place dragable objects onto the image. Each dragable object placement should return a relative latitude and longitude position of the dragable object. There will be six objects, displayed in a side panel, from which the user can select, drag to target position, and place. Again this will commit the latitude and longitude coordinates to the question's answer. This question will therefore have a six part answer. The answers will be in the same shape as question id:2's answers. Static answers will be coded in to determine correctness. I would suggest creating a grid of cells for possition tracking that can be overlayed on to the provided image. Dragging the object to the specified cell and dropping/placing the object on that cell will determine a user's answer as correct. The dragable object will consist of a provided image of a dot. All dragable objects will use the same image. This question can be of the type dragable. Each target point's required latitude and longitude will be provided within the qa panel. The placement of all six dragable objects will be required before the student can submit their answer. The user will not be provided the evaluation of the question until the final results page, which is seen after all questions are completed.
+          { id: 1, label: "Position 1", displayText: "1C2SE", targetRow: 0, targetCol: 0 },
+          { id: 2, label: "Position 2", displayText: "3C6NE", targetRow: 0, targetCol: 0 },
+          { id: 3, label: "Position 3", displayText: "1A6SW", targetRow: 0, targetCol: 0 },
+          { id: 4, label: "Position 4", displayText: "3B7NE", targetRow: 0, targetCol: 0 },
+          { id: 5, label: "Position 5", displayText: "2C4NW", targetRow: 0, targetCol: 0 },
+          { id: 6, label: "Position 6", displayText: "3B9SW", targetRow: 0, targetCol: 0 },
         ],
-        explanation:
-          "Plot the following CGRS Position. Ensure you label you plots with the corresponding number.",
+        explanation: "Plot the following CGRS positions. Ensure you label your plots with the corresponding number.",
       },
     ],
   },
@@ -311,6 +251,11 @@ const appState = {
   scores: buildInitialScores(),
 };
 
+const dragState = {
+  selectedDotId: null,
+  placements: {},
+};
+
 const views = {
   landing: document.getElementById("view-landing"),
   objective: document.getElementById("view-objective"),
@@ -319,6 +264,7 @@ const views = {
 
 const els = {
   cardGrid: document.getElementById("card-grid"),
+  viewResultsBtnArea: document.getElementById("view-results-btn-area"),
   navObjectives: document.getElementById("nav-objectives"),
   headerLabel: document.getElementById("header-objective-label"),
   btnHome: document.getElementById("btn-home"),
@@ -326,6 +272,7 @@ const els = {
   scenarioImg: document.getElementById("scenario-img"),
   protractorImg: document.getElementById("protractor-img"),
   imageSection: document.getElementById("image-section"),
+  dropGrid: document.getElementById("drop-grid"),
   questionCounter: document.getElementById("question-counter"),
   questionText: document.getElementById("question-text"),
   questionForm: document.getElementById("question-form"),
@@ -353,6 +300,8 @@ function navigateTo(viewName) {
   appState.currentView = viewName;
   if (viewName === "landing") {
     els.headerLabel.textContent = "";
+    hideDropGrid();
+    renderLandingCards();
   }
 }
 
@@ -366,58 +315,29 @@ function getCurrentObjective() {
 
 function getCurrentQuestion() {
   const objective = getCurrentObjective();
+  if (!objective) return null;
   return objective.questions[appState.currentQuestionIndex];
 }
 
 function getQuestionWeight(question) {
-  return ["multi-blank", "multi-blank-spoken"].includes(question.type)
-    ? question.items.length
-    : 1;
+  return question.items.length;
 }
 
-function renderLandingCards() {
-  els.cardGrid.innerHTML = OBJECTIVES.map(
-    (objective) => `
-    <article class="obj-card">
-      <div class="card-number">${String(objective.id).padStart(2, "0")}</div>
-      <h2 class="card-title">${objective.title}</h2>
-      <p class="card-desc">${objective.description}</p>
-      <button class="btn-start" type="button" data-objective="${objective.id}">Start</button>
-    </article>
-  `,
-  ).join("");
-}
-
-function renderObjectiveNav() {
-  els.navObjectives.innerHTML = OBJECTIVES.map((objective) => {
+function allObjectivesAnswered() {
+  return OBJECTIVES.every((objective) => {
     const score = appState.scores[objective.id];
-    const allAnswered = score.answered.length === objective.questions.length;
-    return `
-      <li>
-        <a href="#" class="nav-link ${objective.id === appState.currentObjectiveId ? "active" : ""} ${allAnswered ? "completed" : ""}" data-objective="${objective.id}">
-          ${objective.id}. ${objective.title}
-        </a>
-      </li>
-    `;
-  }).join("");
+    return (
+      score.answered.length === objective.questions.length &&
+      score.answered.every((a) => a !== undefined)
+    );
+  });
 }
 
-function loadObjective(objectiveId) {
-  appState.currentObjectiveId = objectiveId;
-  appState.currentQuestionIndex = 0;
-
-  const objective = getCurrentObjective();
-  els.headerLabel.textContent = `Objective ${objective.id}: ${objective.title}`;
-  els.scenarioImg.src = objective.image;
-  els.scenarioImg.alt = objective.title;
-
-  renderObjectiveNav();
-  resetProtractor();
-  navigateTo("objective");
-  loadQuestion(0);
-}
+// --- Multi-blank ---
 
 function createMultiBlankMarkup(question, savedValues = [], disabled = false) {
+  const [label1, label2] = question.fieldLabels || ["Latitude", "Longitude"];
+  const [ph1, ph2] = question.fieldPlaceholders || ["", ""];
   const instruction = question.instructions
     ? `<p class="question-help">${escapeHtml(question.instructions)}</p>`
     : "";
@@ -429,27 +349,25 @@ function createMultiBlankMarkup(question, savedValues = [], disabled = false) {
       <div class="multi-blank-row">
         <div class="multi-blank-label">${escapeHtml(item.label || `Item ${item.id}`)}</div>
         <label class="field-stack">
-          <span>Latitude</span>
+          <span>${escapeHtml(label1)}</span>
           <input
             class="multi-blank-input"
             type="text"
-            inputmode="numeric"
             data-field="latitude"
             data-index="${index}"
-            placeholder="e.g. 30"
+            placeholder="${escapeHtml(ph1)}"
             value="${escapeHtml(values.latitude || "")}"
             ${disabled ? "disabled" : ""}
           />
         </label>
         <label class="field-stack">
-          <span>Longitude</span>
+          <span>${escapeHtml(label2)}</span>
           <input
             class="multi-blank-input"
             type="text"
-            inputmode="numeric"
-            data-field="logitude"
+            data-field="longitude"
             data-index="${index}"
-            placeholder="e.g. 08145"
+            placeholder="${escapeHtml(ph2)}"
             value="${escapeHtml(values.longitude || "")}"
             ${disabled ? "disabled" : ""}
           />
@@ -462,17 +380,44 @@ function createMultiBlankMarkup(question, savedValues = [], disabled = false) {
   return `${instruction}<div class="multi-blank-wrap">${rows}</div>`;
 }
 
-function createMultiBlankSpokenMarkup(
-  question,
-  savedValues = [],
-  disabled = false,
-) {
+function getMultiBlankValues(question) {
+  return question.items.map((_, index) => {
+    const latInput = els.questionForm.querySelector(
+      `[data-field="latitude"][data-index="${index}"]`,
+    );
+    const lonInput = els.questionForm.querySelector(
+      `[data-field="longitude"][data-index="${index}"]`,
+    );
+    return {
+      latitude: latInput ? latInput.value.trim() : "",
+      longitude: lonInput ? lonInput.value.trim() : "",
+    };
+  });
+}
+
+function buildMultiBlankResult(question, userEntries) {
+  let correctCount = 0;
+  question.items.forEach((item, index) => {
+    const entry = userEntries[index] || { latitude: "", longitude: "" };
+    const latCorrect = normalize(entry.latitude) === normalize(item.latitude);
+    const lonCorrect = normalize(entry.longitude) === normalize(item.longitude);
+    if (latCorrect && lonCorrect) correctCount += 1;
+  });
+  return {
+    type: question.type,
+    isFullyCorrect: correctCount === question.items.length,
+    correctCount,
+    totalCount: question.items.length,
+    userEntries,
+  };
+}
+
+// --- Multi-blank-spoken ---
+
+function createMultiBlankSpokenMarkup(question, savedValues = [], disabled = false) {
   const rows = question.items
     .map((item, index) => {
-      const values = savedValues[index] || {
-        bearingParts: ["", "", ""],
-        rangeText: "",
-      };
+      const values = savedValues[index] || { bearingParts: ["", "", ""], rangeText: "" };
       return `
       <div class="multi-blank-row spoken-row">
         <div class="multi-blank-label">${escapeHtml(item.label || `Item ${item.id}`)}</div>
@@ -523,23 +468,16 @@ function getMultiBlankSpokenValues(question) {
 
 function buildMultiBlankSpokenResult(question, userEntries) {
   let correctCount = 0;
-
   question.items.forEach((item, index) => {
-    const entry = userEntries[index] || {
-      bearingParts: ["", "", ""],
-      rangeText: "",
-    };
+    const entry = userEntries[index] || { bearingParts: ["", "", ""], rangeText: "" };
     const bearingCorrect =
       entry.bearingParts.length === 3 &&
       entry.bearingParts.every(
         (part, i) => normalize(part) === normalize(item.bearingParts[i]),
       );
-    const rangeCorrect =
-      normalize(entry.rangeText) === normalize(item.rangeText);
-
+    const rangeCorrect = normalize(entry.rangeText) === normalize(item.rangeText);
     if (bearingCorrect && rangeCorrect) correctCount += 1;
   });
-
   return {
     type: question.type,
     isFullyCorrect: correctCount === question.items.length,
@@ -548,6 +486,216 @@ function buildMultiBlankSpokenResult(question, userEntries) {
     userEntries,
   };
 }
+
+// --- Dragable ---
+
+function createDragableMarkup(question, savedPlacements = null, disabled = false) {
+  dragState.placements = {};
+  dragState.selectedDotId = null;
+  if (savedPlacements) {
+    savedPlacements.forEach((p) => {
+      if (p.row >= 0 && p.col >= 0) {
+        dragState.placements[p.id] = { row: p.row, col: p.col };
+      }
+    });
+  }
+
+  const coordList = question.items
+    .map(
+      (item) => `
+    <li class="dragable-coord-item">
+      <span class="dragable-coord-num">${item.id}.</span>
+      <span class="dragable-coord-text">${escapeHtml(item.displayText || item.label)}</span>
+    </li>
+  `,
+    )
+    .join("");
+
+  const dots = question.items
+    .map((item) => {
+      const isPlaced = !!dragState.placements[item.id];
+      return `
+      <div class="drag-dot ${isPlaced ? "placed" : ""} ${disabled ? "disabled-dot" : ""}"
+           data-dot-id="${item.id}">
+        <div class="drag-dot-marker"></div>
+        <span>${item.id}</span>
+      </div>
+    `;
+    })
+    .join("");
+
+  const placedCount = Object.keys(dragState.placements).length;
+  return `
+    <div class="dragable-panel">
+      <p class="dragable-instructions">Click a numbered dot below, then click the map to place it. Click a placed dot on the map to move it.</p>
+      <ul class="dragable-coord-list">${coordList}</ul>
+      <p class="dragable-progress">${placedCount} / ${question.items.length} placed</p>
+      <div class="dragable-dots">${dots}</div>
+    </div>
+  `;
+}
+
+function buildDragableResult(question) {
+  let correctCount = 0;
+  question.items.forEach((item) => {
+    const placement = dragState.placements[item.id];
+    if (
+      placement &&
+      placement.row === item.targetRow &&
+      placement.col === item.targetCol
+    ) {
+      correctCount += 1;
+    }
+  });
+  const userEntries = question.items.map((item) => ({
+    id: item.id,
+    row: dragState.placements[item.id]?.row ?? -1,
+    col: dragState.placements[item.id]?.col ?? -1,
+  }));
+  return {
+    type: question.type,
+    isFullyCorrect: correctCount === question.items.length,
+    correctCount,
+    totalCount: question.items.length,
+    userEntries,
+  };
+}
+
+// --- Drop grid ---
+
+// positionDropGrid — sizes the grid overlay to the rendered image bounds,
+// applying optional per-question offsets defined in native image pixels.
+//
+// Question properties (all optional, default 0 / null):
+//   gridOffsetX  {number} — left edge of grid area in native image pixels
+//   gridOffsetY  {number} — top  edge of grid area in native image pixels
+//   gridWidth    {number} — width  of grid area in native image pixels (null = image width  - gridOffsetX)
+//   gridHeight   {number} — height of grid area in native image pixels (null = image height - gridOffsetY)
+//
+// These values are scaled to the rendered image size at runtime, so calibration
+// done at any window size applies correctly at all sizes.
+function positionDropGrid() {
+  if (els.dropGrid.classList.contains("hidden")) return;
+  const img = els.scenarioImg;
+  if (!img.naturalWidth) return; // image not yet loaded
+
+  const question = getCurrentQuestion();
+  const imgRect = img.getBoundingClientRect();
+  const containerRect = els.imageSection.getBoundingClientRect();
+
+  const scaleX = imgRect.width  / img.naturalWidth;
+  const scaleY = imgRect.height / img.naturalHeight;
+
+  const offsetX = (question?.gridOffsetX || 0) * scaleX;
+  const offsetY = (question?.gridOffsetY || 0) * scaleY;
+  const gridW   = question?.gridWidth  ? question.gridWidth  * scaleX : imgRect.width  - offsetX;
+  const gridH   = question?.gridHeight ? question.gridHeight * scaleY : imgRect.height - offsetY;
+
+  els.dropGrid.style.left   = `${imgRect.left - containerRect.left + offsetX}px`;
+  els.dropGrid.style.top    = `${imgRect.top  - containerRect.top  + offsetY}px`;
+  els.dropGrid.style.width  = `${gridW}px`;
+  els.dropGrid.style.height = `${gridH}px`;
+}
+
+function showDropGrid(question) {
+  const grid = els.dropGrid;
+  const rows = question.gridRows;
+  const cols = question.gridCols;
+
+  grid.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
+  grid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+  grid.innerHTML = "";
+
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const cell = document.createElement("div");
+      cell.className = "drop-cell";
+      cell.dataset.row = r;
+      cell.dataset.col = c;
+      cell.title = `r:${r} c:${c}`;
+      grid.appendChild(cell);
+    }
+  }
+
+  renderDropPlacements(question);
+  grid.classList.remove("hidden");
+
+  // Position after layout. If the image hasn't loaded yet (first navigation
+  // to this objective), wait for the load event before positioning.
+  if (els.scenarioImg.complete && els.scenarioImg.naturalWidth > 0) {
+    requestAnimationFrame(positionDropGrid);
+  } else {
+    els.scenarioImg.addEventListener("load", () => requestAnimationFrame(positionDropGrid), { once: true });
+  }
+}
+
+function hideDropGrid() {
+  els.dropGrid.classList.add("hidden");
+  els.dropGrid.innerHTML = "";
+}
+
+function renderDropPlacements(question) {
+  els.dropGrid.querySelectorAll(".placed-dot-container").forEach((el) => el.remove());
+
+  Object.entries(dragState.placements).forEach(([dotIdStr, { row, col }]) => {
+    const dotId = Number(dotIdStr);
+    const cell = els.dropGrid.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+    if (!cell) return;
+
+    const container = document.createElement("div");
+    container.className = "placed-dot-container";
+    container.dataset.dotId = dotId;
+    container.innerHTML = `
+      <div class="drag-dot-marker placed-marker"></div>
+      <span class="placed-dot-label">${dotId}</span>
+    `;
+    cell.appendChild(container);
+  });
+}
+
+function updateDragablePanelProgress(question) {
+  const progress = els.questionForm.querySelector(".dragable-progress");
+  const placedCount = Object.keys(dragState.placements).length;
+
+  if (progress) {
+    progress.textContent = `${placedCount} / ${question.items.length} placed`;
+  }
+
+  question.items.forEach((item) => {
+    const dot = els.questionForm.querySelector(`[data-dot-id="${item.id}"]`);
+    if (dot) dot.classList.toggle("placed", !!dragState.placements[item.id]);
+  });
+
+  els.btnSubmit.disabled = placedCount < question.items.length;
+}
+
+// --- Normalize ---
+
+function normalize(value) {
+  return String(value)
+    .toLowerCase()
+    .replace(/\boh\b/g, "zero")
+    .replace(/\bfor\b/g, "four")
+    .replace(/\bto\b/g, "two")
+    .replace(/°/g, "")
+    .replace(/,/g, "")
+    .replace(/-/g, "")
+    .replace(/\s+/g, "")
+    .trim();
+}
+
+// --- Score storage ---
+
+function storeQuestionResult(objectiveId, questionIndex, result) {
+  const score = appState.scores[objectiveId];
+  score.answered[questionIndex] = result;
+  score.correct = score.answered.reduce(
+    (sum, entry) => sum + (entry ? entry.correctCount : 0),
+    0,
+  );
+}
+
+// --- Question loading ---
 
 function loadQuestion(index) {
   appState.currentQuestionIndex = index;
@@ -558,6 +706,8 @@ function loadQuestion(index) {
 
   els.questionCounter.textContent = `Question ${index + 1} of ${objective.questions.length}`;
   els.questionText.textContent = question.text;
+
+  hideDropGrid();
 
   if (question.type === "multi-blank") {
     els.questionForm.innerHTML = createMultiBlankMarkup(
@@ -571,166 +721,106 @@ function loadQuestion(index) {
       storedResult?.userEntries || [],
       isAnswered,
     );
+  } else if (question.type === "dragable") {
+    els.questionForm.innerHTML = createDragableMarkup(
+      question,
+      isAnswered ? storedResult.userEntries : null,
+      isAnswered,
+    );
+    showDropGrid(question);
   }
 
-  els.btnSubmit.disabled = isAnswered;
+  if (question.type === "dragable") {
+    els.btnSubmit.disabled = isAnswered || Object.keys(dragState.placements).length < question.items.length;
+  } else {
+    els.btnSubmit.disabled = isAnswered;
+  }
 
   if (isAnswered) {
-    showStoredFeedback(question, storedResult);
+    showStoredFeedback();
   } else {
     els.feedbackBlock.classList.add("hidden");
-    els.feedbackBlock.classList.remove("correct", "incorrect");
-    focusFirstInput();
+    els.feedbackBlock.classList.remove("correct", "incorrect", "neutral");
+    if (question.type !== "dragable") focusFirstInput();
   }
 
   renderProgressSidebar();
   renderObjectiveNav();
 }
 
-function showStoredFeedback(question, result) {
+// --- Feedback (Phase 2: neutral — evaluation deferred to results page) ---
+
+function showStoredFeedback() {
   els.feedbackBlock.classList.remove("hidden", "correct", "incorrect");
-  els.feedbackBlock.classList.add(
-    result.isFullyCorrect ? "correct" : "incorrect",
-  );
-
-  if (["multi-blank", "multi-blank-spoken"].includes(question.type)) {
-    els.feedbackText.textContent = result.isFullyCorrect
-      ? `Correct! ${result.correctCount}/${result.totalCount} entries correct. ${question.explanation}`
-      : `Submitted. ${result.correctCount}/${result.totalCount} entries correct. ${question.explanation}`;
-  } else {
-    els.feedbackText.textContent = result.isFullyCorrect
-      ? `Correct! ${question.explanation}`
-      : `Incorrect. ${question.explanation}`;
-  }
+  els.feedbackBlock.classList.add("neutral");
+  els.feedbackText.textContent =
+    "Answer recorded. Select another objective from the sidebar, or return home when finished.";
 }
 
-function normalize(value) {
-  return String(value)
-    .toLowerCase()
-    .replace(/\boh\b/g, "zero")
-    .replace(/\bfor\b/g, "four")
-    .replace(/\bto\b/g, "two")
-    .replace(/°/g, "")
-    .replace(/,/g, "")
-    .replace(/-/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-}
+// --- Submit ---
 
-function checkAnswer(userValue, acceptedAnswers) {
-  const normalized = normalize(userValue);
-  return acceptedAnswers.some((answer) => normalize(answer) === normalized);
-}
-
-function getMultiBlankValues(question) {
-  return question.items.map((_, index) => {
-    const latitudeInput = els.questionForm.querySelector(
-      `[data-field="latitude"][data-index="${index}"]`,
-    );
-    const logitudeInput = els.questionForm.querySelector(
-      `[data-field="logitude"][data-index="${index}"]`,
-    );
-    return {
-      latitude: latitudeInput ? latitudeInput.value.trim() : "",
-      longitude: logitudeInput ? logitudeInput.value.trim() : "",
-    };
-  });
-}
-
-function buildMultiBlankResult(question, userEntries) {
-  let correctCount = 0;
-
-  question.items.forEach((item, index) => {
-    const entry = userEntries[index] || { latitude: "", longitude: "" };
-    const latitudeCorrect = checkAnswer(entry.latitude, item.latitudeAnswers);
-    const longitudeCorrect = checkAnswer(
-      entry.longitude,
-      item.longitudeAnswers,
-    );
-    if (latitudeCorrect && longitudeCorrect) {
-      correctCount += 1;
-    }
-  });
-
-  return {
-    type: question.type,
-    isFullyCorrect: correctCount === question.items.length,
-    correctCount,
-    totalCount: question.items.length,
-    userEntries,
-  };
-}
-
-function storeQuestionResult(objectiveId, questionIndex, result) {
-  const score = appState.scores[objectiveId];
-  score.answered[questionIndex] = result;
-  score.correct = score.answered.reduce(
-    (sum, entry) => sum + (entry ? entry.correctCount : 0),
-    0,
-  );
-}
 function submitAnswer() {
   const objective = getCurrentObjective();
   const question = getCurrentQuestion();
-  const existingResult =
-    appState.scores[objective.id].answered[appState.currentQuestionIndex];
+  if (!question) return;
+
+  const existingResult = appState.scores[objective.id].answered[appState.currentQuestionIndex];
   if (existingResult) return;
 
   let result;
 
   if (question.type === "multi-blank") {
     const userEntries = getMultiBlankValues(question);
-    if (!userEntries.some((e) => e.bearing || e.range)) return;
+    if (!userEntries.some((e) => e.latitude || e.longitude)) return;
     result = buildMultiBlankResult(question, userEntries);
   } else if (question.type === "multi-blank-spoken") {
     const userEntries = getMultiBlankSpokenValues(question);
-    if (!userEntries.some((e) => e.bearingParts.some(Boolean) || e.rangeText))
-      return;
+    if (!userEntries.some((e) => e.bearingParts.some(Boolean) || e.rangeText)) return;
     result = buildMultiBlankSpokenResult(question, userEntries);
+  } else if (question.type === "dragable") {
+    if (Object.keys(dragState.placements).length < question.items.length) return;
+    result = buildDragableResult(question);
   }
+
+  if (!result) return;
 
   storeQuestionResult(objective.id, appState.currentQuestionIndex, result);
   disableCurrentInputs();
   els.btnSubmit.disabled = true;
-  showStoredFeedback(question, result);
+  showStoredFeedback();
   renderProgressSidebar();
   renderObjectiveNav();
+  renderLandingViewResultsBtn();
 }
 
 function disableCurrentInputs() {
-  els.questionForm.querySelectorAll("input, textarea").forEach((element) => {
-    element.disabled = true;
+  els.questionForm.querySelectorAll("input, textarea").forEach((el) => {
+    el.disabled = true;
+  });
+  els.questionForm.querySelectorAll(".drag-dot").forEach((d) => {
+    d.classList.add("disabled-dot");
+    d.classList.remove("selected");
   });
 }
 
+// --- Progress sidebar ---
+
 function renderProgressSidebar() {
   const objective = getCurrentObjective();
+  if (!objective) return;
   const score = appState.scores[objective.id];
 
   els.progressList.innerHTML = objective.questions
-    .map((question, index) => {
+    .map((_, index) => {
       const result = score.answered[index];
-      let label = `Q${index + 1}: —`;
-      let className = "progress-item";
-
-      if (result) {
-        if (["multi-blank", "multi-blank-spoken"].includes(question.type)) {
-          label = `Q${index + 1}: ${result.correctCount}/${result.totalCount} correct`;
-          className += result.isFullyCorrect
-            ? " correct"
-            : result.correctCount > 0
-              ? " partial"
-              : " incorrect";
-        } else {
-          label = `Q${index + 1}: ${result.isFullyCorrect ? "Correct" : "Incorrect"}`;
-          className += result.isFullyCorrect ? " correct" : " incorrect";
-        }
-      }
-
+      const label = result ? `Q${index + 1}: Submitted` : `Q${index + 1}: \u2014`;
+      const className = `progress-item${result ? " submitted" : ""}`;
       return `<li class="${className}">${label}</li>`;
     })
     .join("");
 }
+
+// --- Results ---
 
 function renderResults() {
   els.resultsTbody.innerHTML = "";
@@ -749,9 +839,7 @@ function renderResults() {
     totalPossible += objectiveTotal;
 
     const percent =
-      objectiveTotal > 0
-        ? Math.round((objectiveCorrect / objectiveTotal) * 100)
-        : 0;
+      objectiveTotal > 0 ? Math.round((objectiveCorrect / objectiveTotal) * 100) : 0;
     const row = document.createElement("tr");
     row.innerHTML = `
       <td>Obj ${objective.id}: ${objective.title}</td>
@@ -767,18 +855,87 @@ function renderResults() {
   els.overallPct.textContent = `${overallPercent}%`;
 }
 
+// --- Navigation ---
+
 function goToNextQuestion() {
   const objective = getCurrentObjective();
   const nextIndex = appState.currentQuestionIndex + 1;
 
   if (nextIndex >= objective.questions.length) {
-    renderResults();
-    navigateTo("results");
+    // Objective complete — return to landing (results deferred until all objectives done)
+    navigateTo("landing");
     return;
   }
 
   loadQuestion(nextIndex);
 }
+
+function renderLandingViewResultsBtn() {
+  if (!els.viewResultsBtnArea) return;
+  if (allObjectivesAnswered()) {
+    els.viewResultsBtnArea.innerHTML = `
+      <button id="btn-view-results" class="btn-primary btn-view-results" type="button">
+        View Results
+      </button>
+    `;
+  } else {
+    els.viewResultsBtnArea.innerHTML = "";
+  }
+}
+
+function renderLandingCards() {
+  els.cardGrid.innerHTML = OBJECTIVES.map((objective) => {
+    const score = appState.scores[objective.id];
+    const allAnswered =
+      score.answered.length === objective.questions.length &&
+      score.answered.every((a) => a !== undefined);
+    return `
+      <article class="obj-card">
+        <div class="card-number">${String(objective.id).padStart(2, "0")}</div>
+        <h2 class="card-title">${objective.title}</h2>
+        <p class="card-desc">${objective.description}</p>
+        <button class="btn-start" type="button" data-objective="${objective.id}">
+          ${allAnswered ? "Review" : "Start"}
+        </button>
+      </article>
+    `;
+  }).join("");
+  renderLandingViewResultsBtn();
+}
+
+function renderObjectiveNav() {
+  els.navObjectives.innerHTML = OBJECTIVES.map((objective) => {
+    const score = appState.scores[objective.id];
+    const allAnswered =
+      score.answered.length === objective.questions.length &&
+      score.answered.every((a) => a !== undefined);
+    return `
+      <li>
+        <a href="#" class="nav-link ${objective.id === appState.currentObjectiveId ? "active" : ""} ${allAnswered ? "completed" : ""}"
+           data-objective="${objective.id}">
+          ${objective.id}. ${objective.title}
+        </a>
+      </li>
+    `;
+  }).join("");
+}
+
+function loadObjective(objectiveId) {
+  appState.currentObjectiveId = objectiveId;
+  appState.currentQuestionIndex = 0;
+
+  const objective = getCurrentObjective();
+  els.headerLabel.textContent = `Objective ${objective.id}: ${objective.title}`;
+  els.scenarioImg.src = objective.image;
+  els.scenarioImg.alt = objective.title;
+
+  renderObjectiveNav();
+  resetProtractor();
+  navigateTo("objective");
+  loadQuestion(0);
+}
+
+// --- Protractor ---
 
 function initProtractor() {
   const protractor = els.protractorImg;
@@ -802,14 +959,11 @@ function initProtractor() {
 
   document.addEventListener("mousemove", (event) => {
     if (!dragging) return;
-
     const rect = container.getBoundingClientRect();
     const maxX = rect.width - protractor.offsetWidth;
     const maxY = rect.height - protractor.offsetHeight;
-
     posX = Math.max(0, Math.min(event.clientX - rect.left - startX, maxX));
     posY = Math.max(0, Math.min(event.clientY - rect.top - startY, maxY));
-
     protractor.style.left = `${posX}px`;
     protractor.style.top = `${posY}px`;
   });
@@ -825,6 +979,8 @@ function resetProtractor() {
   els.protractorImg.style.left = "80px";
   els.protractorImg.style.top = "80px";
 }
+
+// --- Utility ---
 
 function focusFirstInput() {
   const firstInput = els.questionForm.querySelector("textarea, input");
@@ -844,11 +1000,15 @@ function resetTraining() {
   appState.currentObjectiveId = null;
   appState.currentQuestionIndex = 0;
   appState.scores = buildInitialScores();
+  dragState.placements = {};
+  dragState.selectedDotId = null;
+  hideDropGrid();
   els.feedbackBlock.classList.add("hidden");
-  els.feedbackBlock.classList.remove("correct", "incorrect");
-  renderObjectiveNav();
+  els.feedbackBlock.classList.remove("correct", "incorrect", "neutral");
   navigateTo("landing");
 }
+
+// --- Events ---
 
 function bindEvents() {
   document.addEventListener("click", (event) => {
@@ -862,6 +1022,13 @@ function bindEvents() {
     if (navLink) {
       event.preventDefault();
       loadObjective(Number(navLink.dataset.objective));
+      return;
+    }
+
+    if (event.target.closest("#btn-view-results")) {
+      renderResults();
+      navigateTo("results");
+      return;
     }
   });
 
@@ -870,6 +1037,13 @@ function bindEvents() {
   els.btnRestart.addEventListener("click", resetTraining);
   els.btnSubmit.addEventListener("click", submitAnswer);
   els.btnNext.addEventListener("click", goToNextQuestion);
+
+  window.addEventListener("resize", () => {
+    const q = getCurrentQuestion();
+    if (q?.type === "dragable" && !els.dropGrid.classList.contains("hidden")) {
+      positionDropGrid();
+    }
+  });
 
   els.btnToggleProtr.addEventListener("click", () => {
     appState.protractorVisible = !appState.protractorVisible;
@@ -881,20 +1055,73 @@ function bindEvents() {
 
   els.questionForm.addEventListener("keydown", (event) => {
     if (event.key !== "Enter" || event.shiftKey) return;
-    if (event.target.tagName === "TEXTAREA") {
-      event.preventDefault();
-      submitAnswer();
-      return;
-    }
-    if (event.target.tagName === "INPUT") {
+    if (event.target.tagName === "TEXTAREA" || event.target.tagName === "INPUT") {
       event.preventDefault();
       submitAnswer();
     }
   });
+
+  // Dragable: dot selection
+  els.questionForm.addEventListener("click", (event) => {
+    const question = getCurrentQuestion();
+    if (!question || question.type !== "dragable") return;
+    if (appState.scores[appState.currentObjectiveId]?.answered[appState.currentQuestionIndex]) return;
+
+    const dot = event.target.closest(".drag-dot");
+    if (!dot || dot.classList.contains("placed") || dot.classList.contains("disabled-dot")) return;
+
+    const dotId = Number(dot.dataset.dotId);
+    dragState.selectedDotId = dotId;
+    els.questionForm.querySelectorAll(".drag-dot").forEach((d) => d.classList.remove("selected"));
+    dot.classList.add("selected");
+  });
+
+  // Dragable: cell placement
+  els.dropGrid.addEventListener("click", (event) => {
+    const question = getCurrentQuestion();
+    if (!question || question.type !== "dragable") return;
+    if (appState.scores[appState.currentObjectiveId]?.answered[appState.currentQuestionIndex]) return;
+
+    const cell = event.target.closest(".drop-cell");
+    if (!cell) return;
+
+    const row = Number(cell.dataset.row);
+    const col = Number(cell.dataset.col);
+    const placedDot = cell.querySelector(".placed-dot-container");
+
+    // Click on placed dot with no selection active = pick it up
+    if (placedDot && dragState.selectedDotId === null) {
+      const dotId = Number(placedDot.dataset.dotId);
+      delete dragState.placements[dotId];
+      dragState.selectedDotId = dotId;
+      renderDropPlacements(question);
+      updateDragablePanelProgress(question);
+      els.questionForm.querySelectorAll(".drag-dot").forEach((d) => d.classList.remove("selected"));
+      const dot = els.questionForm.querySelector(`[data-dot-id="${dotId}"]`);
+      if (dot) dot.classList.add("selected");
+      return;
+    }
+
+    if (dragState.selectedDotId === null) return;
+
+    // If cell already occupied, displace the existing dot
+    if (placedDot) {
+      const existingId = Number(placedDot.dataset.dotId);
+      delete dragState.placements[existingId];
+    }
+
+    dragState.placements[dragState.selectedDotId] = { row, col };
+    dragState.selectedDotId = null;
+    els.questionForm.querySelectorAll(".drag-dot").forEach((d) => d.classList.remove("selected"));
+
+    renderDropPlacements(question);
+    updateDragablePanelProgress(question);
+  });
 }
 
+// --- Init ---
+
 document.addEventListener("DOMContentLoaded", () => {
-  renderLandingCards();
   renderObjectiveNav();
   initProtractor();
   bindEvents();
