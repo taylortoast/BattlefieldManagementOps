@@ -701,6 +701,150 @@ textarea {
   margin-top: 1rem;
 }
 
+/* --- Instructions page --- */
+
+.info-container {
+  max-width: 860px;
+  margin: 2rem auto;
+  padding: 0 1.5rem 3rem;
+}
+
+.info-title {
+  font-size: 1.7rem;
+  color: #e0e0ff;
+  margin-bottom: 2rem;
+}
+
+.info-section {
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.info-section h2 {
+  font-size: 1.15rem;
+  color: #9cc2ef;
+  border-bottom: 1px solid #2d2d40;
+  padding-bottom: 0.4rem;
+}
+
+.info-section p {
+  color: #c8cfe0;
+  line-height: 1.65;
+}
+
+.info-steps {
+  color: #c8cfe0;
+  line-height: 1.8;
+  padding-left: 1.4rem;
+}
+
+.info-steps li {
+  margin-bottom: 0.25rem;
+}
+
+.info-systems {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.info-system-card {
+  background: #1e1e30;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  min-width: 100px;
+  font-size: 0.9rem;
+  color: #c8cfe0;
+}
+
+.info-system-num {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #4a90d9;
+}
+
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.info-table th,
+.info-table td {
+  padding: 0.65rem 0.85rem;
+  border-bottom: 1px solid #2d2d40;
+  text-align: left;
+}
+
+.info-table th {
+  color: #9cc2ef;
+}
+
+.info-table td {
+  color: #c8cfe0;
+}
+
+.info-table code {
+  background: #1a1a2e;
+  border: 1px solid #333;
+  border-radius: 3px;
+  padding: 0.1rem 0.4rem;
+  font-size: 0.85rem;
+  color: #88ccff;
+}
+
+.info-tip {
+  background: #1a2a3a;
+  border-left: 3px solid #4a90d9;
+  border-radius: 0 6px 6px 0;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  color: #b8cde0;
+  line-height: 1.6;
+}
+
+.info-tip code {
+  background: #121e2a;
+  border-radius: 3px;
+  padding: 0.1rem 0.35rem;
+  color: #88ccff;
+}
+
+.info-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #55cc55;
+  background: rgba(85, 204, 85, 0.12);
+  border: 1px solid rgba(85, 204, 85, 0.35);
+  border-radius: 4px;
+  padding: 0.1rem 0.45rem;
+}
+
+.info-actions {
+  margin-top: 2rem;
+}
+
+.info-home-btn {
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.65rem 1.4rem;
+}
+
+/* Instructions link on landing */
+.landing-info-link {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+}
+
 @media (max-width: 1100px) {
   .obj-layout {
     grid-template-columns: 200px 1fr;
