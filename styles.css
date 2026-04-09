@@ -317,9 +317,9 @@ textarea {
 }
 
 .spoken-row {
+  grid-template-columns: 78px auto 1fr;
   align-items: end;
   gap: 1.2rem;
-  flex-wrap: wrap;
 }
 
 .field-stack {
@@ -637,9 +637,24 @@ textarea {
 }
 
 .results-title {
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.5rem;
   font-size: 1.7rem;
   color: #e0e0ff;
+}
+
+.results-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1.25rem;
+  font-size: 0.9rem;
+  color: #97a3bf;
+}
+
+.results-clock {
+  font-variant-numeric: tabular-nums;
+  font-size: 1.1rem;
+  color: #c8d8f0;
 }
 
 .results-table {

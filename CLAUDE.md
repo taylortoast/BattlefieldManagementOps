@@ -61,19 +61,19 @@ Correct/incorrect scores are only revealed on the **Results** page, which appear
 - Placed dot labels displayed on top of each marker
 - Deferred evaluation: results only shown after all 10 objectives submitted
 - Home screen shows per-objective completion badges and a "View Results" button when all 10 done
-- DevTools helpers: `window.appState`, `window.debugScores()`
-- DevTools helpers: `window.appState`, `window.debugScores()`
+- Bearing input layout fixed: `spoken-row` uses `grid-template-columns: 78px auto 1fr` so all 3 bearing inputs are visible alongside the range input in the 640px QA panel
+- Results page shows submission timestamp and a live running clock
+- DevTools helpers (`window.appState`, `window.debugScores`) removed — answers were accessible via browser console
 
-### Pending Calibration
+### Calibration Status
 
-All dynamic objectives use `answerMode: "coordinate"` with placeholder `targetX: 0, targetY: 0`.
-Calibrate by opening the app in the browser, hovering over the map image — the tooltip shows native pixel coords (`x:NNN y:NNN`). Set `targetX`/`targetY` per item in `script.js`.
+All dynamic objectives are calibrated with real `targetX`/`targetY` pixel values:
 
-- **Obj 2** (Bearing Dynamic) — `1A2.png` — already calibrated ✅
-- **Obj 4** (Lat/Long Dynamic) — `2A2.png` — needs calibration
-- **Obj 6** (MGRS Dynamic) — `3A2.png` — needs calibration
-- **Obj 8** (GARS Dynamic) — `4A2.png` — needs calibration
-- **Obj 10** (CGRS Dynamic) — `5A2.png` — needs calibration
+- **Obj 2** (Bearing Dynamic) — `1A2.png` — calibrated ✅
+- **Obj 4** (Lat/Long Dynamic) — `2A2.png` — calibrated ✅
+- **Obj 6** (MGRS Dynamic) — `3A2.png` — calibrated ✅
+- **Obj 8** (GARS Dynamic) — `4A2.png` — calibrated ✅
+- **Obj 10** (CGRS Dynamic) — `5A2.png` — calibrated ✅
 
 ---
 

@@ -725,9 +725,13 @@ const els = {
   resultsTbody: document.querySelector("#results-table tbody"),
   overallScore: document.getElementById("overall-score"),
   overallPct: document.getElementById("overall-pct"),
+  resultsSubmitted: document.getElementById("results-submitted"),
+  resultsClock: document.getElementById("results-clock"),
   btnBackLanding: document.getElementById("btn-back-landing"),
   btnRestart: document.getElementById("btn-restart"),
 };
+
+let clockInterval = null;
 
 function buildInitialScores() {
   return Object.fromEntries(
@@ -736,6 +740,10 @@ function buildInitialScores() {
 }
 
 function navigateTo(viewName) {
+  if (viewName !== "results" && clockInterval) {
+    clearInterval(clockInterval);
+    clockInterval = null;
+  }
   Object.values(views).forEach((view) => view.classList.add("hidden"));
   views[viewName].classList.remove("hidden");
   appState.currentView = viewName;
@@ -1382,8 +1390,45 @@ function renderProgressSidebar() {
 
 // --- Results ---
 
+function formatTime(date) {
+  return [date.getHours(), date.getMinutes(), date.getSeconds()]
+    .map((n) => String(n).padStart(2, "0"))
+    .join(":");
+}
+
+function formatDateTime(date) {
+  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const d = days[date.getDay()];
+  const dd = String(date.getDate()).padStart(2, "0");
+  const m = months[date.getMonth()];
+  const yyyy = date.getFullYear();
+  return `${d}, ${dd} ${m} ${yyyy} at ${formatTime(date)}`;
+}
+
 function renderResults() {
   els.resultsTbody.innerHTML = "";
+
+  const now = new Date();
+  els.resultsSubmitted.textContent = "Submitted: " + formatDateTime(now);
+  if (clockInterval) clearInterval(clockInterval);
+  els.resultsClock.textContent = formatTime(new Date());
+  clockInterval = setInterval(() => {
+    els.resultsClock.textContent = formatTime(new Date());
+  }, 1000);
 
   let totalCorrect = 0;
   let totalPossible = 0;
@@ -1843,28 +1888,4 @@ document.addEventListener("DOMContentLoaded", () => {
   initProtractor();
   bindEvents();
   navigateTo("landing");
-
-  // DevTools helpers — inspect state at any time in the browser console:
-  //   window.appState       → full application state including all stored answers
-  //   window.debugScores()  → formatted score summary for all objectives
-  window.appState = appState;
-  window.debugScores = function () {
-    console.group("%c 📊 Score Summary", "font-weight:bold;font-size:1.1em");
-    let totalCorrect = 0;
-    let totalPossible = 0;
-    OBJECTIVES.forEach((obj) => {
-      const score = appState.scores[obj.id];
-      const possible = obj.questions.reduce((s, q) => s + q.items.length, 0);
-      totalCorrect += score.correct;
-      totalPossible += possible;
-      const answered = score.answered.filter(Boolean).length;
-      console.group(
-        `Obj ${obj.id}: ${obj.title} — ${score.correct}/${possible} (${answered}/${obj.questions.length} questions answered)`,
-      );
-      console.groupEnd();
-    });
-    const pct =
-      totalPossible > 0 ? Math.round((totalCorrect / totalPossible) * 100) : 0;
-    console.groupEnd();
-  };
 });
