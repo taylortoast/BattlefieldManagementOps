@@ -1575,6 +1575,11 @@ function loadObjective(objectiveId) {
 
   renderObjectiveNav();
   resetProtractor();
+  const isMGRS = [5, 6].includes(objectiveId);
+  els.btnToggleProtr.classList.toggle("hidden", !isMGRS);
+  appState.protractorVisible = false;
+  els.protractorImg.classList.add("hidden");
+  els.btnToggleProtr.textContent = "Show Protractor";
   navigateTo("objective");
   loadQuestion(0);
 }
