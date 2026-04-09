@@ -656,12 +656,38 @@ const OBJECTIVES = [
   },
 ];
 
+const STORAGE_KEY = "trs334_scores_v1";
+
+function saveToStorage() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(appState.scores));
+  } catch (e) {
+    // storage unavailable — silent fail
+  }
+}
+
+function loadFromStorage() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    const fresh = buildInitialScores();
+    // Validate: must have an entry for every objective id
+    if (!OBJECTIVES.every((obj) => parsed[obj.id] !== undefined)) return null;
+    // Merge parsed into fresh so any new objectives added to OBJECTIVES still get defaults
+    Object.assign(fresh, parsed);
+    return fresh;
+  } catch (e) {
+    return null;
+  }
+}
+
 const appState = {
   currentView: "landing",
   currentObjectiveId: null,
   currentQuestionIndex: 0,
   protractorVisible: false,
-  scores: buildInitialScores(),
+  scores: loadFromStorage() ?? buildInitialScores(),
 };
 
 const dragState = {
@@ -1203,6 +1229,7 @@ function storeQuestionResult(objectiveId, questionIndex, result) {
     (sum, entry) => sum + (entry ? entry.correctCount : 0),
     0,
   );
+  saveToStorage();
 
   const objective = getObjective(objectiveId);
   console.group(
