@@ -1375,13 +1375,34 @@ function renderResults() {
       objectiveTotal > 0
         ? Math.round((objectiveCorrect / objectiveTotal) * 100)
         : 0;
+    const objectiveMisses = objectiveTotal - objectiveCorrect;
     const row = document.createElement("tr");
+    if (objectiveMisses >= 3) row.classList.add("row-miss-highlight");
     row.innerHTML = `
       <td>Obj ${objective.id}: ${objective.title}</td>
       <td>${objectiveCorrect} / ${objectiveTotal}</td>
       <td>${percent}%</td>
     `;
     els.resultsTbody.appendChild(row);
+
+    if (objective.questions.length > 1) {
+      objective.questions.forEach((question, qIndex) => {
+        const entry = score.answered[qIndex];
+        const qCorrect = entry ? entry.correctCount : 0;
+        const qTotal = getQuestionWeight(question);
+        const qMisses = qTotal - qCorrect;
+        const qPercent = qTotal > 0 ? Math.round((qCorrect / qTotal) * 100) : 0;
+        const subRow = document.createElement("tr");
+        subRow.classList.add("row-sub");
+        if (qMisses >= 3) subRow.classList.add("row-miss-highlight");
+        subRow.innerHTML = `
+          <td>Question Set ${qIndex + 1}</td>
+          <td>${qCorrect} / ${qTotal}</td>
+          <td>${qPercent}%</td>
+        `;
+        els.resultsTbody.appendChild(subRow);
+      });
+    }
   });
 
   const overallPercent =
