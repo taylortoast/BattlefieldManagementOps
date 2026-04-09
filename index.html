@@ -1,87 +1,106 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>334TRS Battlefield Training</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <header class="app-header">
-    <span class="header-title">334TRS Battlefield Training</span>
-    <span id="header-objective-label" class="header-obj-label"></span>
-    <button id="btn-home" class="btn-home" type="button">Home</button>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>334TRS Battlefield Training</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <span class="header-title">334TRS Battlefield Training</span>
+      <span id="header-objective-label" class="header-obj-label"></span>
+      <button id="btn-home" class="btn-home" type="button">Home</button>
+    </header>
 
-  <main>
-    <section id="view-landing" class="view">
-      <h1 class="landing-title">Select an Objective</h1>
-      <div id="view-results-btn-area" class="view-results-btn-area"></div>
-      <div id="card-grid" class="card-grid"></div>
-    </section>
+    <main>
+      <section id="view-landing" class="view">
+        <h1 class="landing-title">Select an Objective</h1>
+        <div id="view-results-btn-area" class="view-results-btn-area"></div>
+        <div id="card-grid" class="card-grid"></div>
+      </section>
 
-    <section id="view-objective" class="view hidden">
-      <div class="obj-layout">
-        <aside class="sidebar">
-          <h3 class="sidebar-heading">Objectives</h3>
-          <ul id="nav-objectives" class="nav-list"></ul>
-          <hr class="sidebar-divider" />
-          <h3 class="sidebar-heading">Tools</h3>
-          <button id="btn-toggle-protractor" class="btn-tool" type="button">Show Protractor</button>
-          <hr class="sidebar-divider" />
-          <h3 class="sidebar-heading">Progress</h3>
-          <ul id="progress-list" class="progress-list"></ul>
-        </aside>
+      <section id="view-objective" class="view hidden">
+        <div class="obj-layout">
+          <aside class="sidebar">
+            <h3 class="sidebar-heading">Objectives</h3>
+            <ul id="nav-objectives" class="nav-list"></ul>
+            <hr class="sidebar-divider" />
+            <h3 class="sidebar-heading">Tools</h3>
+            <button id="btn-toggle-protractor" class="btn-tool" type="button">
+              Show Protractor
+            </button>
+            <hr class="sidebar-divider" />
+            <h3 class="sidebar-heading">Progress</h3>
+            <ul id="progress-list" class="progress-list"></ul>
+          </aside>
 
-        <section id="image-section" class="image-section">
-          <img id="scenario-img" src="" alt="Scenario" class="scenario-img" />
-          <img id="protractor-img" src="images/Protractor.png" alt="Protractor" class="protractor-tool hidden" />
-          <div id="drop-grid" class="drop-grid hidden"></div>
-          <div id="coord-dots-layer" class="coord-dots-layer hidden"></div>
-          <div id="img-coord-tip" class="img-coord-tip hidden"></div>
-        </section>
+          <section id="image-section" class="image-section">
+            <img id="scenario-img" src="" alt="Scenario" class="scenario-img" />
+            <img
+              id="protractor-img"
+              src="images/Protractor.png"
+              alt="Protractor"
+              class="protractor-tool hidden"
+            />
+            <div id="drop-grid" class="drop-grid hidden"></div>
+            <div id="coord-dots-layer" class="coord-dots-layer hidden"></div>
+            <div id="img-coord-tip" class="img-coord-tip hidden"></div>
+          </section>
 
-        <aside class="qa-panel">
-          <div id="question-counter" class="question-counter"></div>
-          <p id="question-text" class="question-text"></p>
-          <div id="question-form" class="question-form"></div>
-          <button id="btn-submit-answer" class="btn-primary" type="button">Submit</button>
-          <div id="feedback-block" class="feedback-block hidden">
-            <p id="feedback-text" class="feedback-text"></p>
-            <button id="btn-next-question" class="btn-secondary" type="button">Next</button>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section id="view-results" class="view hidden">
-      <div class="results-container">
-        <h1 class="results-title">Training Results</h1>
-        <table class="results-table" id="results-table">
-          <thead>
-            <tr>
-              <th>Objective</th>
-              <th>Score</th>
-              <th>%</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-          <tfoot>
-            <tr class="results-overall">
-              <td><strong>Overall</strong></td>
-              <td id="overall-score"></td>
-              <td id="overall-pct"></td>
-            </tr>
-          </tfoot>
-        </table>
-        <div class="results-actions">
-          <button id="btn-back-landing" class="btn-secondary" type="button">Back to Objectives</button>
-          <button id="btn-restart" class="btn-primary" type="button">Restart Training</button>
+          <aside class="qa-panel">
+            <div id="question-counter" class="question-counter"></div>
+            <p id="question-text" class="question-text"></p>
+            <div id="question-form" class="question-form"></div>
+            <button id="btn-submit-answer" class="btn-primary" type="button">
+              Submit
+            </button>
+            <div id="feedback-block" class="feedback-block hidden">
+              <p id="feedback-text" class="feedback-text"></p>
+              <button
+                id="btn-next-question"
+                class="btn-secondary"
+                type="button"
+              >
+                Next
+              </button>
+            </div>
+          </aside>
         </div>
-      </div>
-    </section>
-  </main>
+      </section>
 
-  <script src="script.js"></script>
-</body>
+      <section id="view-results" class="view hidden">
+        <div class="results-container">
+          <h1 class="results-title">Training Results</h1>
+          <table class="results-table" id="results-table">
+            <thead>
+              <tr>
+                <th>Objective</th>
+                <th>Score</th>
+                <th>%</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+              <tr class="results-overall">
+                <td><strong>Overall</strong></td>
+                <td id="overall-score"></td>
+                <td id="overall-pct"></td>
+              </tr>
+            </tfoot>
+          </table>
+          <div class="results-actions">
+            <button id="btn-back-landing" class="btn-secondary" type="button">
+              Back to Objectives
+            </button>
+            <button id="btn-restart" class="btn-primary" type="button">
+              Restart Training
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
 </html>

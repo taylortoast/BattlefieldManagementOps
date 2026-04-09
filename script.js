@@ -55,16 +55,13 @@ const OBJECTIVES = [
         type: "dragable",
         answerMode: "coordinate",
         text: "Place each numbered marker at the correct bearing and range position on the map.",
-        // CALIBRATION: Open 1A2.png in an image editor, hover over each target point,
-        // note the pixel x/y, and set targetX/targetY. Set tolerance to the acceptable
-        // radius in native image pixels (e.g. 25 ≈ one range-ring half-width).
         items: [
           {
             id: 1,
             label: "Position 1",
             displayText: "two two zero, range thirty",
-            targetX: 346,
-            targetY: 463,
+            targetX: 387,
+            targetY: 483,
             tolerance: 25,
           },
           {
@@ -72,39 +69,39 @@ const OBJECTIVES = [
             label: "Position 2",
             displayText: "one zero zero, range fifty",
             targetX: 532,
-            targetY: 422,
+            targetY: 423,
             tolerance: 25,
           },
           {
             id: 3,
             label: "Position 3",
             displayText: "zero five zero, range one hundred thirty",
-            targetX: 668,
-            targetY: 179,
+            targetX: 669,
+            targetY: 180,
             tolerance: 25,
           },
           {
             id: 4,
             label: "Position 4",
             displayText: "one two zero, range one hundred twenty",
-            targetX: 677,
-            targetY: 559,
+            targetX: 679,
+            targetY: 562,
             tolerance: 25,
           },
           {
             id: 5,
             label: "Position 5",
             displayText: "three one zero, range sixty",
-            targetX: 279,
-            targetY: 301,
+            targetX: 245,
+            targetY: 374,
             tolerance: 25,
           },
           {
             id: 6,
             label: "Position 6",
             displayText: "one one zero, range eighty",
-            targetX: 600,
-            targetY: 473,
+            targetX: 599,
+            targetY: 471,
             tolerance: 25,
           },
         ],
@@ -135,6 +132,38 @@ const OBJECTIVES = [
         explanation:
           "Determine Latitude/Longitude Coordinates for the marked positions.",
       },
+      {
+        id: 2,
+        type: "multi-blank",
+        text: "Latitude/Longitude Coordinates for each target?",
+        fieldPlaceholders: ["e.g. 2915S", "e.g. 07830W"],
+        items: [
+          { id: 1, label: "Target 1", latitude: "2915S", longitude: "07830W" },
+          { id: 2, label: "Target 2", latitude: "2930S", longitude: "07715W" },
+          { id: 3, label: "Target 3", latitude: "3030S", longitude: "08045W" },
+          { id: 4, label: "Target 4", latitude: "3030S", longitude: "07615W" },
+          { id: 5, label: "Target 5", latitude: "3145S", longitude: "07730W" },
+          { id: 6, label: "Target 6", latitude: "3215S", longitude: "07745W" },
+        ],
+        explanation:
+          "Determine Latitude/Longitude Coordinates for the marked positions.",
+      },
+      {
+        id: 3,
+        type: "multi-blank",
+        text: "Latitude/Longitude Coordinates for each target?",
+        fieldPlaceholders: ["e.g. 2845N", "e.g. 08515W"],
+        items: [
+          { id: 1, label: "Target 1", latitude: "2845N", longitude: "08515W" },
+          { id: 2, label: "Target 2", latitude: "2715N", longitude: "08545W" },
+          { id: 3, label: "Target 3", latitude: "2745N", longitude: "08145W" },
+          { id: 4, label: "Target 4", latitude: "2745N", longitude: "08130W" },
+          { id: 5, label: "Target 5", latitude: "2630N", longitude: "08330W" },
+          { id: 6, label: "Target 6", latitude: "2515N", longitude: "08130W" },
+        ],
+        explanation:
+          "Determine Latitude/Longitude Coordinates for the marked positions.",
+      },
     ],
   },
   {
@@ -147,56 +176,172 @@ const OBJECTIVES = [
       {
         id: 1,
         type: "dragable",
+        answerMode: "coordinate",
         text: "Plot the following Lat/Long positions on the map.",
-        gridRows: 17,
-        gridCols: 21,
-        gridOffsetX: 138, // pixels from the LEFT edge of the image to where the  grid starts
-        gridOffsetY: 95, // pixels from the TOP  edge of the image to where the grid starts
-        gridWidth: 695, // width  of the grid area in pixels (null = full image width  - offsetX)
-        gridHeight: 657, // height of the grid area in pixels (null = full image height - offsetY)
-        // CALIBRATION NEEDED: Set targetRow/targetCol to match the correct grid cells on image 2A2.png
         items: [
           {
             id: 1,
             label: "Position 1",
             displayText: "2930S 08330E",
-            targetRow: 0,
-            targetCol: 0,
+            targetX: 482,
+            targetY: 190,
+            tolerance: 25,
           },
           {
             id: 2,
             label: "Position 2",
             displayText: "3015S 08315E",
-            targetRow: 0,
-            targetCol: 0,
+            targetX: 449,
+            targetY: 305,
+            tolerance: 25,
           },
           {
             id: 3,
             label: "Position 3",
             displayText: "3115S 08415E",
-            targetRow: 0,
-            targetCol: 0,
+            targetX: 582,
+            targetY: 459,
+            tolerance: 25,
           },
           {
             id: 4,
             label: "Position 4",
             displayText: "3230S 08230E",
-            targetRow: 0,
-            targetCol: 0,
+            targetX: 350,
+            targetY: 654,
+            tolerance: 25,
           },
           {
             id: 5,
             label: "Position 5",
             displayText: "2915S 08545E",
-            targetRow: 0,
-            targetCol: 0,
+            targetX: 776,
+            targetY: 150,
+            tolerance: 25,
           },
           {
             id: 6,
             label: "Position 6",
             displayText: "3045S 08445E",
-            targetRow: 0,
-            targetCol: 0,
+            targetX: 647,
+            targetY: 382,
+            tolerance: 25,
+          },
+        ],
+        explanation:
+          "Plot the following Lat/Long positions. Ensure you label your plots with the corresponding number.",
+      },
+      {
+        id: 2,
+        type: "dragable",
+        answerMode: "coordinate",
+        text: "Plot the following Lat/Long positions on the map.",
+        items: [
+          {
+            id: 1,
+            label: "Position 1",
+            displayText: "3015S 08045W",
+            targetX: 185,
+            targetY: 305,
+            tolerance: 25,
+          },
+          {
+            id: 2,
+            label: "Position 2",
+            displayText: "3145S 07745W",
+            targetX: 582,
+            targetY: 535,
+            tolerance: 25,
+          },
+          {
+            id: 3,
+            label: "Position 3",
+            displayText: "2930S 07830W",
+            targetX: 482,
+            targetY: 189,
+            tolerance: 25,
+          },
+          {
+            id: 4,
+            label: "Position 4",
+            displayText: "2930S 07745W",
+            targetX: 580,
+            targetY: 186,
+            tolerance: 25,
+          },
+          {
+            id: 5,
+            label: "Position 5",
+            displayText: "3045S 08045W",
+            targetX: 186,
+            targetY: 382,
+            tolerance: 25,
+          },
+          {
+            id: 6,
+            label: "Position 6",
+            displayText: "3030S 07730W",
+            targetX: 614,
+            targetY: 343,
+            tolerance: 25,
+          },
+        ],
+        explanation:
+          "Plot the following Lat/Long positions. Ensure you label your plots with the corresponding number.",
+      },
+      {
+        id: 3,
+        type: "dragable",
+        answerMode: "coordinate",
+        text: "Plot the following Lat/Long positions on the map.",
+        items: [
+          {
+            id: 1,
+            label: "Position 1",
+            displayText: "2830N 08345W",
+            targetX: 446,
+            targetY: 186,
+            tolerance: 25,
+          },
+          {
+            id: 2,
+            label: "Position 2",
+            displayText: "2715N 08330W",
+            targetX: 482,
+            targetY: 382,
+            tolerance: 25,
+          },
+          {
+            id: 3,
+            label: "Position 3",
+            displayText: "2545N 08415W",
+            targetX: 382,
+            targetY: 614,
+            tolerance: 25,
+          },
+          {
+            id: 4,
+            label: "Position 4",
+            displayText: "2715N 08530W",
+            targetX: 219,
+            targetY: 382,
+            tolerance: 25,
+          },
+          {
+            id: 5,
+            label: "Position 5",
+            displayText: "2530N 08545W",
+            targetX: 186,
+            targetY: 650,
+            tolerance: 25,
+          },
+          {
+            id: 6,
+            label: "Position 6",
+            displayText: "2515N 08415W",
+            targetX: 382,
+            targetY: 691,
+            tolerance: 25,
           },
         ],
         explanation:
@@ -268,56 +413,56 @@ const OBJECTIVES = [
       {
         id: 1,
         type: "dragable",
+        answerMode: "coordinate",
         text: "Plot the following MGRS coordinates on the map.",
-        gridRows: 27,
-        gridCols: 40,
-        gridOffsetX: 0, // pixels from the LEFT edge of the image to where the  grid starts
-        gridOffsetY: 0, // pixels from the TOP  edge of the image to where the grid starts
-        gridWidth: null, // width  of the grid area in pixels (null = full image width  - offsetX)
-        gridHeight: null, // height of the grid area in pixels (null = full image height - offsetY)
-        // CALIBRATION NEEDED: Set targetRow/targetCol to match the correct grid cells on image 3A2.png
         items: [
           {
             id: 1,
             label: "Position 1",
             displayText: "16SFL29734966",
-            targetRow: 0,
-            targetCol: 0,
+            targetX: 294,
+            targetY: 89,
+            tolerance: 25,
           },
           {
             id: 2,
             label: "Position 2",
             displayText: "16SFL32074967",
-            targetRow: 0,
-            targetCol: 0,
+            targetX: 586,
+            targetY: 57,
+            tolerance: 25,
           },
           {
             id: 3,
             label: "Position 3",
             displayText: "16SFL28174820",
-            targetRow: 0,
-            targetCol: 0,
+            targetX: 90,
+            targetY: 254,
+            tolerance: 25,
           },
           {
             id: 4,
             label: "Position 4",
             displayText: "16SFL31364870",
-            targetRow: 0,
-            targetCol: 0,
+            targetX: 498,
+            targetY: 199,
+            tolerance: 25,
           },
           {
             id: 5,
             label: "Position 5",
             displayText: "16SFL30764757",
-            targetRow: 0,
-            targetCol: 0,
+            targetX: 415,
+            targetY: 234,
+            tolerance: 25,
           },
           {
             id: 6,
             label: "Position 6",
             displayText: "16SFL31624730",
-            targetRow: 0,
-            targetCol: 0,
+            targetX: 523,
+            targetY: 374,
+            tolerance: 25,
           },
         ],
         explanation:
@@ -360,56 +505,56 @@ const OBJECTIVES = [
       {
         id: 1,
         type: "dragable",
+        answerMode: "coordinate",
         text: "Plot the following GARS positions on the map.",
-        gridRows: 40,
-        gridCols: 40,
-        gridOffsetX: 0, // pixels from the LEFT edge of the image to where the  grid starts
-        gridOffsetY: 0, // pixels from the TOP  edge of the image to where the grid starts
-        gridWidth: null, // width  of the grid area in pixels (null = full image width  - offsetX)
-        gridHeight: null, // height of the grid area in pixels (null = full image height - offsetY)
-        // CALIBRATION NEEDED: Set targetRow/targetCol to match the correct grid cells on image 4A2.png
         items: [
           {
             id: 1,
             label: "Position 1",
             displayText: "185LC13",
-            targetRow: 0,
-            targetCol: 0,
+            targetX: 598,
+            targetY: 67,
+            tolerance: 25,
           },
           {
             id: 2,
             label: "Position 2",
             displayText: "183LB27",
-            targetRow: 0,
-            targetCol: 0,
+            targetX: 254,
+            targetY: 317,
+            tolerance: 25,
           },
           {
             id: 3,
             label: "Position 3",
             displayText: "185LA14",
-            targetRow: 0,
-            targetCol: 0,
+            targetX: 539,
+            targetY: 475,
+            tolerance: 25,
           },
           {
             id: 4,
             label: "Position 4",
             displayText: "183KZ22",
-            targetRow: 0,
-            targetCol: 0,
+            targetX: 286,
+            targetY: 634,
+            tolerance: 25,
           },
           {
             id: 5,
             label: "Position 5",
             displayText: "185KZ38",
-            targetRow: 0,
-            targetCol: 0,
+            targetX: 571,
+            targetY: 787,
+            tolerance: 25,
           },
           {
             id: 6,
             label: "Position 6",
             displayText: "184LC48",
-            targetRow: 0,
-            targetCol: 0,
+            targetX: 318,
+            targetY: 444,
+            tolerance: 25,
           },
         ],
         explanation:
@@ -452,56 +597,56 @@ const OBJECTIVES = [
       {
         id: 1,
         type: "dragable",
+        answerMode: "coordinate",
         text: "Plot the following CGRS positions on the map.",
-        gridRows: 40,
-        gridCols: 40,
-        gridOffsetX: 0, // pixels from the LEFT edge of the image to where the  grid starts
-        gridOffsetY: 0, // pixels from the TOP  edge of the image to where the grid starts
-        gridWidth: null, // width  of the grid area in pixels (null = full image width  - offsetX)
-        gridHeight: null, // height of the grid area in pixels (null = full image height - offsetY)
-        // CALIBRATION NEEDED: Set targetRow/targetCol to match the correct grid cells on image 5A2.png
         items: [
           {
             id: 1,
             label: "Position 1",
             displayText: "1C2SE",
-            targetRow: 0,
-            targetCol: 0,
+            targetX: 738,
+            targetY: 604,
+            tolerance: 25,
           },
           {
             id: 2,
             label: "Position 2",
             displayText: "3C6NE",
-            targetRow: 0,
-            targetCol: 0,
+            targetX: 818,
+            targetY: 152,
+            tolerance: 25,
           },
           {
             id: 3,
             label: "Position 3",
             displayText: "1A6SW",
-            targetRow: 0,
-            targetCol: 0,
+            targetX: 284,
+            targetY: 686,
+            tolerance: 25,
           },
           {
             id: 4,
             label: "Position 4",
             displayText: "3B7NE",
-            targetRow: 0,
-            targetCol: 0,
+            targetX: 409,
+            targetY: 234,
+            tolerance: 25,
           },
           {
             id: 5,
             label: "Position 5",
             displayText: "2C4NW",
-            targetRow: 0,
-            targetCol: 0,
+            targetX: 615,
+            targetY: 400,
+            tolerance: 25,
           },
           {
             id: 6,
             label: "Position 6",
             displayText: "3B9SW",
-            targetRow: 0,
-            targetCol: 0,
+            targetX: 533,
+            targetY: 274,
+            tolerance: 25,
           },
         ],
         explanation:
@@ -1068,9 +1213,6 @@ function storeQuestionResult(objectiveId, questionIndex, result) {
       ? "background:#1a4a1a;color:#7fff7f;padding:2px 4px;border-radius:3px"
       : "background:#4a1a1a;color:#ff9f9f;padding:2px 4px;border-radius:3px",
   );
-  console.log("User entries:", result.userEntries);
-  console.log("Full result:", result);
-  console.log("Objective running total:", score.correct, "correct");
   console.groupEnd();
 }
 
@@ -1671,21 +1813,10 @@ document.addEventListener("DOMContentLoaded", () => {
       console.group(
         `Obj ${obj.id}: ${obj.title} — ${score.correct}/${possible} (${answered}/${obj.questions.length} questions answered)`,
       );
-      score.answered.forEach((result, i) => {
-        if (!result) return;
-        console.log(
-          `Q${i + 1}: ${result.isFullyCorrect ? "✅" : "❌"} ${result.correctCount}/${result.totalCount}`,
-          result.userEntries,
-        );
-      });
       console.groupEnd();
     });
     const pct =
       totalPossible > 0 ? Math.round((totalCorrect / totalPossible) * 100) : 0;
-    console.log(
-      `%cOverall: ${totalCorrect}/${totalPossible} (${pct}%)`,
-      "font-weight:bold",
-    );
     console.groupEnd();
   };
 });
