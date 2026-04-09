@@ -1,6 +1,13 @@
 # Claude Code internal files
 .claude/
 
+# Docs folder
+docs/
+
+# Markdown — keep only README.md
+*.md
+!README.md
+
 # OS
 .DS_Store
 Thumbs.db
